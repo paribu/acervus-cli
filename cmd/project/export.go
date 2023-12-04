@@ -5,7 +5,7 @@ import "github.com/spf13/cobra"
 var exportProjectCmd = &cobra.Command{
 	Use:   "export",
 	Short: "Export",
-	Long:  `Export the results of a project`,
+	Long:  `Export results of a project`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// TODO implement
 		return nil

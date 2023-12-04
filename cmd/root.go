@@ -4,7 +4,9 @@ import (
 	"os"
 
 	"github.com/paribu/acervus-cli/cmd/auth"
+	"github.com/paribu/acervus-cli/cmd/deploy"
 	"github.com/paribu/acervus-cli/cmd/project"
+	"github.com/paribu/acervus-cli/cmd/test"
 	"github.com/spf13/cobra"
 )
 
@@ -26,4 +28,6 @@ func Execute() {
 func init() {
 	rootCmd.AddCommand(auth.AuthCmd)
 	rootCmd.AddCommand(project.ProjectCmd)
+	rootCmd.AddCommand(deploy.DeployCmd)
+	rootCmd.AddCommand(test.TestCmd)
 }
