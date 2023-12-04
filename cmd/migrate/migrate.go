@@ -18,18 +18,6 @@ from a designated source platform to the current system.`,
 }
 
 func init() {
-	MigrateCmd.Flags().StringVarP(
-		&sourcePlatform,
-		"sourcePlatform",
-		"s",
-		"",
-		"Select the platform you will be migrating from",
-	)
-	MigrateCmd.Flags().StringVarP(
-		&projectDir,
-		"projectDir",
-		"d",
-		"",
-		"Directory where the project will be created",
-	)
+	MigrateCmd.Flags().StringVarP(&sourcePlatform, "sourcePlatform", "s", "", "Platform you will be migrating from")
+	MigrateCmd.Flags().StringVarP(&projectDir, "dir", "d", "", "Directory where the project will be created")
 }

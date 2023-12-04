@@ -15,11 +15,5 @@ var createProjectCmd = &cobra.Command{
 }
 
 func init() {
-	createProjectCmd.Flags().StringVarP(
-		&projectDir,
-		"dir",
-		"d",
-		"",
-		"Directory where the project will be created",
-	)
+	createProjectCmd.Flags().StringVarP(&projectDir, "dir", "d", "", "Directory where the project will be created")
 }

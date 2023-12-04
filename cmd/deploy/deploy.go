@@ -16,8 +16,8 @@ This command interacts with the Acervus platform to start the deployment and rep
 }
 
 func init() {
-	DeployCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Settings YAML file")
-	DeployCmd.Flags().StringVarP(&projectFilePath, "project", "p", "", "project.ts file")
+	DeployCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
+	DeployCmd.Flags().StringVarP(&projectFilePath, "project", "p", "", "Path to project.ts file")
 	DeployCmd.Flags().StringVarP(&projectID, "id", "i", "", "ID of the project you want to deploy")
 	DeployCmd.MarkFlagRequired("id")
 }
