@@ -5,6 +5,7 @@ import (
 
 	"github.com/paribu/acervus-cli/cmd/auth"
 	"github.com/paribu/acervus-cli/cmd/deploy"
+	"github.com/paribu/acervus-cli/cmd/migrate"
 	"github.com/paribu/acervus-cli/cmd/project"
 	"github.com/paribu/acervus-cli/cmd/test"
 	"github.com/spf13/cobra"
@@ -31,4 +32,5 @@ func init() {
 	rootCmd.AddCommand(project.ProjectCmd)
 	rootCmd.AddCommand(deploy.DeployCmd)
 	rootCmd.AddCommand(test.TestCmd)
+	rootCmd.AddCommand(migrate.MigrateCmd)
 }
