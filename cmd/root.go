@@ -3,6 +3,7 @@ package cmd
 import (
 	"os"
 
+	"github.com/paribu/acervus-cli/cmd/auth"
 	"github.com/spf13/cobra"
 )
 
@@ -19,4 +20,8 @@ func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}
+}
+
+func init() {
+	rootCmd.AddCommand(auth.AuthCmd)
 }
