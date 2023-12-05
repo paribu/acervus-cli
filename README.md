@@ -90,10 +90,10 @@ You can then open `./project/<project_id>/project.ts` and begin coding your appl
 Test your project on the cloud before deployment:
 
 ```
-acervus test -p <path_to_project_file> -i <project_id> -y <yaml_file>
+acervus test -p <path_to_project_file> -i <project_id> -s <settings_file>
 ```
 
-Default `path_to_project_file` is `./project/<project_id>/project.ts`, and default `yaml_file` is `./settings.yaml`. 
+Default `path_to_project_file` is `./project/<project_id>/project.ts`, and default `settings_file` is `./settings.yaml`. 
 
 This command runs your script in the cloud with a mock event and returns results or error messages.
 
@@ -104,7 +104,7 @@ Be careful, you can not modify your project once it is deployed.
 To deploy your project:
 
 ```
-acervus deploy -p <path_to_project_file> -i <project_id> -y <yaml_file>
+acervus deploy -p <path_to_project_file> -i <project_id> -s <settings_file>
 ```
 
 Once deployed, your project starts running, and you can use the GraphQL API to query results.
@@ -139,7 +139,7 @@ To migrate an existing project to Acervus Cloud:
 acervus migrate -d <target_dir> -s <source_platform>
 ```
 
-Currently supported platforms for `-s` flag are `Subgraph` and `Subquery`.
+Currently supported platform for `-s` flag are `Subgraph`.
 
 /// This section needs improvement
 
