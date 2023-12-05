@@ -7,7 +7,7 @@ import (
 	"github.com/AlecAivazis/survey/v2"
 )
 
-var MigratePlatforms = []string{"Subgraph", "Subquery"}
+var MigratePlatforms = []string{"Subgraph"}
 var ContractNameRegex = `^[a-zA-Z_][a-zA-Z0-9_]*$`
 var defaultSchemaFilepath = "./schema.graphql"
 

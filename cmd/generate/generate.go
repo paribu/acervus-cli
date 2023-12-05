@@ -14,5 +14,5 @@ var GenerateCmd = &cobra.Command{
 func init() {
 	GenerateCmd.AddCommand(generateBoilerplateCmd)
 	GenerateCmd.AddCommand(generateGraphQLCmd)
-	GenerateCmd.AddCommand(generateSettingsCmd)
+	GenerateCmd.AddCommand(GenerateSettingsCmd)
 }

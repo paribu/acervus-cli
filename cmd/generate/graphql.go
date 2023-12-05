@@ -1,13 +1,41 @@
 package generate
 
-import "github.com/spf13/cobra"
+import (
+	"errors"
+	"fmt"
+	"os"
+	"path/filepath"
+
+	"github.com/paribu/acervus-cli/src/api"
+	"github.com/spf13/cobra"
+)
 
 var generateGraphQLCmd = &cobra.Command{
 	Use:   "graphql",
 	Short: "Generate GraphQL",
 	Long:  "Generate GraphQL schema from ABI and settings file",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		// TODO implement
+		api := api.NewProjectManagerAPI()
+
+		response, err := api.GraphQL(settingsFilePath)
+		if err != nil {
+			return fmt.Errorf("error when generating files: %s", err)
+		}
+
+		for _, fileInfo := range response.Files {
+			fileName := filepath.Join(fileInfo.Path)
+			fileDir := filepath.Dir(fileName)
+
+			if _, err := os.Stat(fileDir); errors.Is(err, os.ErrNotExist) {
+				os.MkdirAll(fileDir, os.ModePerm)
+			}
+
+			err = os.WriteFile(fileName, []byte(fileInfo.Contents), os.ModePerm)
+			if err != nil {
+				return fmt.Errorf("error when writing files: %s", err)
+			}
+		}
+
 		return nil
 	},
 }
