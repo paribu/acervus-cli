@@ -18,12 +18,13 @@ This command initiates the testing process for the specified Acervus Project, pr
 
 		api := api.NewProjectManagerAPI()
 
-		_, err := api.Test(projectID, settingsFilePath, projectFilePath)
+		testResponse, err := api.Test(projectID, settingsFilePath, projectFilePath)
 		if err != nil {
 			return fmt.Errorf("could not test in Acervus: %v", err)
 		}
 
 		cmd.Println("Test successful")
+		cmd.Printf("%+v", testResponse)
 
 		return nil
 	},
