@@ -1,6 +1,9 @@
 package project
 
 import (
+	"fmt"
+
+	"github.com/paribu/acervus-cli/src/api"
 	"github.com/spf13/cobra"
 )
 
@@ -9,7 +12,15 @@ var deleteProjectCmd = &cobra.Command{
 	Short: "Delete a project",
 	Long:  "Delete the project with given ID.",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		// TODO implement
+		api := api.NewProjectManagerAPI()
+
+		err := api.DeleteProject(projectID)
+		if err != nil {
+			return fmt.Errorf("error while deleting project: %s", err)
+		}
+
+		cmd.Printf("Project with ID %s has been successfully deleted.\n", projectID)
+
 		return nil
 	},
 }
