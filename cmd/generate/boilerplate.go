@@ -47,5 +47,5 @@ It's automatically runs when you create a new project.`,
 
 func init() {
 	generateBoilerplateCmd.Flags().StringVarP(&projectDir, "dir", "d", "", "Directory where the generated files will be placed")
-	generateGraphQLCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
+	generateBoilerplateCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
 }
