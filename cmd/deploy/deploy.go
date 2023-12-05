@@ -1,6 +1,9 @@
 package deploy
 
 import (
+	"fmt"
+
+	"github.com/paribu/acervus-cli/src/api"
 	"github.com/spf13/cobra"
 )
 
@@ -10,7 +13,17 @@ var DeployCmd = &cobra.Command{
 	Long: `The "deploy" command is used to initiate the deployment process of a project identified by its project ID into Acervus. 
 This command interacts with the Acervus platform to start the deployment and reports the result.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		// TODO implement
+		cmd.Printf("Project %s trying to deploy into Acervus \n", projectID)
+
+		api := api.NewProjectManagerAPI()
+
+		_, err := api.Deploy(projectID, settingsFilePath, projectFilePath)
+		if err != nil {
+			return fmt.Errorf("could not deploy into Acervus: %v", err)
+		}
+
+		cmd.Println("Deploy successful")
+
 		return nil
 	},
 }

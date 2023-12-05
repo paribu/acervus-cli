@@ -1,6 +1,9 @@
 package test
 
 import (
+	"fmt"
+
+	"github.com/paribu/acervus-cli/src/api"
 	"github.com/spf13/cobra"
 )
 
@@ -11,7 +14,17 @@ var TestCmd = &cobra.Command{
 It allows you to validate and verify the functionality of the project using various testing scenarios and inputs.
 This command initiates the testing process for the specified Acervus Project, providing detailed feedback on the success or failure of the tests.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		// TODO implement
+		cmd.Printf("Project %s is being tested in Acervus \n", projectID)
+
+		api := api.NewProjectManagerAPI()
+
+		_, err := api.Test(projectID, settingsFilePath, projectFilePath)
+		if err != nil {
+			return fmt.Errorf("could not test in Acervus: %v", err)
+		}
+
+		cmd.Println("Test successful")
+
 		return nil
 	},
 }
