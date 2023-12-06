@@ -13,7 +13,43 @@ const credentialsFile = "./credentials.json"
 // For "login" context we try to update existing account's tokens.
 // For "register" context we try to add new records to the file.
 func AddCredential(ctx Context, email, refreshToken, accessToken string) error {
-	return nil
+	if !isCredentialsFileExists() {
+		err := saveCredentials([]*Credential{})
+		if err != nil {
+			return err
+		}
+	}
+
+	credentials, err := LoadCredentials()
+	if err != nil {
+		return err
+	}
+
+	for i, cred := range credentials {
+		credentials[i].Current = false
+
+		if cred.Email == email {
+			if ctx == RegisterContext {
+				return errors.New("credential with the given email already exists")
+			}
+			if ctx == LoginContext {
+				credentials[i].RefreshToken = refreshToken
+				credentials[i].AccessToken = accessToken
+				credentials[i].Current = true
+
+				return saveCredentials(credentials)
+			}
+		}
+	}
+
+	credentials = append(credentials, &Credential{
+		Email:        email,
+		RefreshToken: refreshToken,
+		AccessToken:  accessToken,
+		Current:      true,
+	})
+
+	return saveCredentials(credentials)
 }
 
 // UpdateCredential updates the record with given email from credentials file.
