@@ -5,8 +5,9 @@ import (
 )
 
 var (
-	AuthServiceURL           string
-	ProjectManagerServiceURL string
+	AuthServiceURL            string
+	ProjectManagerServiceURL  string
+	AllowUnsignedCertificates bool
 )
 
 func init() {
@@ -24,9 +25,11 @@ func init() {
 func setDefaultValues() {
 	viper.SetDefault("auth.url", "")           // TODO fill after it is determined
 	viper.SetDefault("projectManager.url", "") // TODO fill after it is determined
+	viper.SetDefault("allowUnsignedCert", false)
 }
 
 func configureVariables() {
 	AuthServiceURL = viper.GetString("auth.url")
 	ProjectManagerServiceURL = viper.GetString("projectManager.url")
+	AllowUnsignedCertificates = viper.GetBool("allowUnsignedCert")
 }

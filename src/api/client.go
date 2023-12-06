@@ -2,6 +2,7 @@ package api
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -72,7 +73,13 @@ func (a *apiClient) doRequest(method, url, accessToken string, body []byte) ([]b
 		)
 	}
 
-	client := &http.Client{}
+	client := &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: config.AllowUnsignedCertificates,
+			},
+		},
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		return []byte{}, CLI_STATUS_CODE_INTERNAL_ERROR, err
