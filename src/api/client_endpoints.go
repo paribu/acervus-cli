@@ -42,7 +42,7 @@ var endpoints = struct {
 	},
 	project: projectEndpoints{
 		list:   "projects",
-		create: "project/create",
+		create: "projects/create",
 		deploy: func(projectID string) string {
 			return fmt.Sprintf("projects/%s/deploy", projectID)
 		},

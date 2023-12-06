@@ -93,7 +93,7 @@ func (a *projectManagerAPI) Test(projectID, settingsFilePath, projectFilePath st
 		return nil, err
 	}
 
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.deploy(projectID), body)
+	resp, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.test(projectID), body)
 	if err != nil {
 		return nil, err
 	}
