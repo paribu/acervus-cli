@@ -41,7 +41,7 @@ Choose the one you want to activate and it will be set as your current credentia
 			return fmt.Errorf("error selecting credential: %s", err)
 		}
 
-		cmd.Printf("%s has been set as the current active account.\n", credentials[selectedIndex-1].Email)
+		cmd.Printf("%s has been set as the current active account.\n", credentials[selectedIndex].Email)
 
 		return nil
 	},
@@ -80,7 +80,7 @@ func chooseCredential(cmd *cobra.Command, credentials []*credential.Credential) 
 
 		var err error
 		selectedIndex, err = strconv.Atoi(input)
-		if err == nil && selectedIndex > 0 && selectedIndex <= len(credentials) {
+		if err == nil && selectedIndex >= 0 && selectedIndex < len(credentials) {
 			break
 		}
 
