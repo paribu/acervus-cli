@@ -1,6 +1,7 @@
 package test
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/paribu/acervus-cli/src/api"
@@ -23,8 +24,13 @@ This command initiates the testing process for the specified Acervus Project, pr
 			return fmt.Errorf("could not test in Acervus: %v", err)
 		}
 
+		testJSON, err := json.Marshal(testResponse)
+		if err != nil {
+			return fmt.Errorf("could not convert test results to JSON %v", err)
+		}
+
 		cmd.Println("Test successful")
-		cmd.Printf("%+v", testResponse)
+		cmd.Println(string(testJSON))
 
 		return nil
 	},
