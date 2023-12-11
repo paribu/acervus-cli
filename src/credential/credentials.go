@@ -25,21 +25,26 @@ func AddCredential(ctx Context, email, refreshToken, accessToken string) error {
 		return err
 	}
 
+	alreadyExists := false
 	for i, cred := range credentials {
 		credentials[i].Current = false
 
 		if cred.Email == email {
+			alreadyExists = true
 			if ctx == RegisterContext {
 				return errors.New("credential with the given email already exists")
 			}
+
 			if ctx == LoginContext {
 				credentials[i].RefreshToken = refreshToken
 				credentials[i].AccessToken = accessToken
 				credentials[i].Current = true
-
-				return saveCredentials(credentials)
 			}
 		}
+	}
+
+	if alreadyExists {
+		return saveCredentials(credentials)
 	}
 
 	credentials = append(credentials, &Credential{
