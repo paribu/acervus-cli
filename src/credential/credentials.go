@@ -171,7 +171,7 @@ func isCredentialsFileExists() bool {
 // saveCredentials writes given credentials into credentials file.
 func saveCredentials(credentials []*Credential) error {
 	if len(credentials) == 0 {
-		return os.WriteFile(credentialsFile, []byte("{}\n"), 0644)
+		return os.WriteFile(credentialsFile, []byte("[]"), 0644)
 	}
 
 	data, err := json.MarshalIndent(credentials, "", "  ")
