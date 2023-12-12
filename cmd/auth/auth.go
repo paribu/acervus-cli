@@ -15,8 +15,12 @@ var AuthCmd = &cobra.Command{
 	Use:   "auth",
 	Short: "Acervus Authentication",
 	Long: `Acervus Authentication allows you to switch between multiple stored credentials. 
-Choose the one you want to activate and it will be set as your current credential.`,
+Choose the one you want to activate, and it will be set as your current credential.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		if email != "" {
+			return switchToCredential(email)
+		}
+
 		credentials, err := credential.LoadCredentials()
 		if err != nil {
 			return fmt.Errorf("error loading credentials: %s", err)
@@ -51,6 +55,36 @@ func init() {
 	AuthCmd.AddCommand(loginCmd)
 	AuthCmd.AddCommand(registerCmd)
 	AuthCmd.AddCommand(logoutCmd)
+
+	AuthCmd.Flags().StringVarP(&email, "email", "e", "", "Switch to a specific credential by email")
+}
+
+func switchToCredential(email string) error {
+	credentials, err := credential.LoadCredentials()
+	if err != nil {
+		return fmt.Errorf("error loading credentials: %s", err)
+	}
+
+	var selectedIndex int = -1
+	for i, cred := range credentials {
+		if cred.Email == email {
+			selectedIndex = i
+			break
+		}
+	}
+
+	if selectedIndex == -1 {
+		return fmt.Errorf("credential with email '%s' not found", email)
+	}
+
+	err = selectCredential(credentials, selectedIndex)
+	if err != nil {
+		return fmt.Errorf("error selecting credential: %s", err)
+	}
+
+	fmt.Printf("%s has been set as the current active account.\n", credentials[selectedIndex].Email)
+
+	return nil
 }
 
 func selectCredential(credentials []*credential.Credential, index int) error {
