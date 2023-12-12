@@ -1,0 +1,59 @@
+type IssueEventSchema @entity {
+	id: ID!
+	amount: BigInt
+}
+
+type RedeemEventSchema @entity {
+	id: ID!
+	amount: BigInt
+}
+
+type DeprecateEventSchema @entity {
+	id: ID!
+	newAddress: String
+}
+
+type ParamsEventSchema @entity {
+	id: ID!
+	feeBasisPoints: BigInt
+	maxFee: BigInt
+}
+
+type DestroyedBlackFundsEventSchema @entity {
+	id: ID!
+	_blackListedUser: String
+	_balance: BigInt
+}
+
+type AddedBlackListEventSchema @entity {
+	id: ID!
+	_user: String
+}
+
+type RemovedBlackListEventSchema @entity {
+	id: ID!
+	_user: String
+}
+
+type ApprovalEventSchema @entity {
+	id: ID!
+	owner: String
+	spender: String
+	value: BigInt
+}
+
+type TransferEventSchema @entity {
+	id: ID!
+	from: String
+	to: String
+	value: BigInt
+}
+
+type PauseEventSchema @entity {
+	id: ID!
+}
+
+type UnpauseEventSchema @entity {
+	id: ID!
+}
+
