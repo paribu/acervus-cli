@@ -17,6 +17,7 @@ This command registers a user with the specified email address and password.
 In this step, we add the ABI file to the system and create a settings file.
 
 **Required Information for Settings**:
+
 - Project Name
 - Project Description
 - Network
@@ -31,7 +32,7 @@ In this step, we add the ABI file to the system and create a settings file.
 
 **Settings File Creation Command**:
 
-      generate settings
+        generate settings
 
 The generate settings command is used to create the settings file.
 
@@ -39,7 +40,7 @@ The generate settings command is used to create the settings file.
 
 Now that our ABI file and settings file are ready, we can create our project.
 
- **Project Creation Command**:
+**Project Creation Command**:
 
 	    projects create
 
@@ -51,11 +52,12 @@ We can review the created project file and edit the handle functions in the `pro
 
 ## 5. Testing the Project
 
-Before deploying, we need to check that the system is working correctly with the 
+Before deploying, we need to check that the system is working correctly with the command.
+
+**Test Command**:
 
 	    test -i <projectID>
 
-command.
 
 Here, `projectID` is the identifier of the project to be tested.
 
@@ -63,7 +65,7 @@ Here, `projectID` is the identifier of the project to be tested.
 
 If the test is successful, we are ready to deploy the project.
 
- **Deploy Command**:
+**Deploy Command**:
 
 	    deploy -i <projectID>
 
