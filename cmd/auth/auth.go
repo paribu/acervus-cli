@@ -17,10 +17,6 @@ var AuthCmd = &cobra.Command{
 	Long: `Acervus Authentication allows you to switch between multiple stored credentials. 
 Choose the one you want to activate, and it will be set as your current credential.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if email != "" {
-			return switchToCredential(email)
-		}
-
 		credentials, err := credential.LoadCredentials()
 		if err != nil {
 			return fmt.Errorf("error loading credentials: %s", err)
@@ -38,7 +34,17 @@ Choose the one you want to activate, and it will be set as your current credenti
 			return err
 		}
 
-		selectedIndex := chooseCredential(cmd, credentials)
+		selectedIndex := -1
+
+		if email != "" {
+			selectedIndex = selecCredentialWithEmail(credentials, email)
+		} else {
+			selectedIndex = chooseCredential(cmd, credentials)
+		}
+
+		if selectedIndex == -1 {
+			return errors.New("selected credential not found")
+		}
 
 		err = selectCredential(credentials, selectedIndex)
 		if err != nil {
@@ -59,12 +65,7 @@ func init() {
 	AuthCmd.Flags().StringVarP(&email, "email", "e", "", "Switch to a specific credential by email")
 }
 
-func switchToCredential(email string) error {
-	credentials, err := credential.LoadCredentials()
-	if err != nil {
-		return fmt.Errorf("error loading credentials: %s", err)
-	}
-
+func selecCredentialWithEmail(credentials []*credential.Credential, email string) int {
 	var selectedIndex int = -1
 	for i, cred := range credentials {
 		if cred.Email == email {
@@ -73,18 +74,7 @@ func switchToCredential(email string) error {
 		}
 	}
 
-	if selectedIndex == -1 {
-		return fmt.Errorf("credential with email '%s' not found", email)
-	}
-
-	err = selectCredential(credentials, selectedIndex)
-	if err != nil {
-		return fmt.Errorf("error selecting credential: %s", err)
-	}
-
-	fmt.Printf("%s has been set as the current active account.\n", credentials[selectedIndex].Email)
-
-	return nil
+	return selectedIndex
 }
 
 func selectCredential(credentials []*credential.Credential, index int) error {
@@ -106,7 +96,7 @@ func chooseCredential(cmd *cobra.Command, credentials []*credential.Credential) 
 	listCredentials(cmd, credentials)
 	scanner := bufio.NewScanner(os.Stdin)
 
-	var selectedIndex int
+	selectedIndex := -1
 	for {
 		cmd.Print("Enter the number of the account you want to use: ")
 		scanner.Scan()
