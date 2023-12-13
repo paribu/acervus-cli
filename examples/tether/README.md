@@ -8,7 +8,7 @@ The first step involves user registration and login. If you are registered, you 
 
 **Registration Command**:
 
-	    acervus auth register -e <email> -p <password>
+	acervus auth register -e <email> -p <password>
 
 This command registers a user with the specified email address and password.
 
@@ -32,7 +32,7 @@ In this step, we add the ABI file to the system and create a settings file.
 
 **Settings File Creation Command**:
 
-      acervus generate settings
+	acervus generate settings
 
 After running the create settings command, settings and schema files are created. The settings file contains detailed information about how the project will be structured and which events of the smart contract will be monitored.
 
@@ -42,7 +42,7 @@ Now that our ABI file and settings file are ready, we can create our project.
 
  **Project Creation Command**:
 
-	    acervus projects create
+	acervus projects create
 
 This command will create the project in the specified directory or in the default (project) directory.
 
@@ -204,7 +204,7 @@ export  function handleTransferEvent(event:  generated.TransferEvent):  void  {
 
 Before deploying, we need to check that the system is working correctly with the command.
 
-	    acervus test -i <projectID>
+	acervus test -i <projectID>
 
 Here, `projectID` is the identifier of the project to be tested.
 
@@ -214,7 +214,7 @@ If the test is successful, we are ready to deploy the project.
 
  **Deploy Command**:
 
-	    acervus deploy -i <projectID>
+	acervus deploy -i <projectID>
 
 Here, `projectID` is the identifier of your project.
 
