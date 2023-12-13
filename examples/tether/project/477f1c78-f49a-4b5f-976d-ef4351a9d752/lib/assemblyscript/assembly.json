@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "noLib": true,
+    "allowJs": false,
+    "typeRoots": ["types"],
+    "types": ["assembly"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./*"]
+    },
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "preserveConstEnums": false,
+    "downlevelIteration": true
+  }
+}

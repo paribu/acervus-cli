@@ -1,0 +1,41 @@
+project: Example
+description: Example project with Tether smart contract
+schema: ./schema.graphql
+sources:
+- track: ethereum/contract
+  name: TetherToken
+  network: Ethereum Mainnet
+  source:
+    address: 0xdAC17F958D2ee523a2206206994597C13D831ec7
+    abi: ./abi.json
+  code:
+    file: TetherToken
+    handlers:
+    - type: ethereum/event
+      function: handleDeprecateEvent
+      name: Deprecate(address)
+      crudMode: true
+      startBlock: 18763794
+      endBlock: 18770218
+    - type: ethereum/event
+      function: handleDestroyedBlackFundsEvent
+      name: DestroyedBlackFunds(address,uint256)
+      startBlock: 18763794
+      endBlock: 18770218
+    - type: ethereum/event
+      function: handleAddedBlackListEvent
+      name: AddedBlackList(address)
+      startBlock: 18763794
+      endBlock: 18770218
+    - type: ethereum/event
+      function: handleApprovalEvent
+      name: Approval(address,address,uint256)
+      crudMode: true
+      startBlock: 18763794
+      endBlock: 18770218
+    - type: ethereum/event
+      function: handleTransferEvent
+      name: Transfer(address,address,uint256)
+      crudMode: true
+      startBlock: 18763794
+      endBlock: 18770218
