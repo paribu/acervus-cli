@@ -1,4 +1,4 @@
-project: 'Example '
+project: Example
 description: Example project with Tether smart contract
 schema: ./schema.graphql
 sources:
@@ -12,15 +12,19 @@ sources:
     file: TetherToken
     handlers:
     - type: ethereum/event
-      function: handleParamsEvent
-      name: Params(uint256,uint256)
+      function: handleDeprecateEvent
+      name: Deprecate(address)
       crudMode: true
       startBlock: 18763794
       endBlock: 18770218
     - type: ethereum/event
-      function: handleTransferEvent
-      name: Transfer(address,address,uint256)
-      crudMode: true
+      function: handleDestroyedBlackFundsEvent
+      name: DestroyedBlackFunds(address,uint256)
+      startBlock: 18763794
+      endBlock: 18770218
+    - type: ethereum/event
+      function: handleAddedBlackListEvent
+      name: AddedBlackList(address)
       startBlock: 18763794
       endBlock: 18770218
     - type: ethereum/event
@@ -30,20 +34,8 @@ sources:
       startBlock: 18763794
       endBlock: 18770218
     - type: ethereum/event
-      function: handleDestroyedBlackFundsEvent
-      name: DestroyedBlackFunds(address,uint256)
-      crudMode: true
-      startBlock: 18763794
-      endBlock: 18770218
-    - type: ethereum/event
-      function: handleAddedBlackListEvent
-      name: AddedBlackList(address)
-      crudMode: true
-      startBlock: 18763794
-      endBlock: 18770218
-    - type: ethereum/event
-      function: handleRemovedBlackListEvent
-      name: RemovedBlackList(address)
+      function: handleTransferEvent
+      name: Transfer(address,address,uint256)
       crudMode: true
       startBlock: 18763794
       endBlock: 18770218
