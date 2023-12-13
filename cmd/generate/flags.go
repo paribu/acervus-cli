@@ -20,6 +20,7 @@ var abiPath string
 var schemaPath string
 var startBlock, endBlock string
 var handlers string
+var overwrite bool
 
 func validateProjectName() error {
 	if projectName != "" {

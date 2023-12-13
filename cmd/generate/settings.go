@@ -27,8 +27,10 @@ necessary settings. Users can then customize the settings to fit their requireme
 		return validateFields()
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := checkExistingProjects(defaultSettingsFilepath); err != nil {
-			return err
+		if !overwrite {
+			if err := checkExistingProjects(defaultSettingsFilepath); err != nil {
+				return err
+			}
 		}
 
 		askMissingFlags()
@@ -78,6 +80,7 @@ func init() {
 	GenerateSettingsCmd.Flags().StringVarP(&startBlock, "startBlock", "s", "", "Enter the block number where your indexing process will begin")
 	GenerateSettingsCmd.Flags().StringVarP(&endBlock, "endBlock", "e", "", "Enter the block number where your indexing process will end")
 	GenerateSettingsCmd.Flags().StringVarP(&handlers, "handlers", "z", "", "Provide the handlers for your project")
+	GenerateSettingsCmd.Flags().BoolVarP(&overwrite, "overwrite", "o", false, "Overwrite existing settings file if it exists")
 }
 
 func fetchNetworks() error {
