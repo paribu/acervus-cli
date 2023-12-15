@@ -18,6 +18,7 @@ const (
 )
 
 type GenerateGraphQLRequest struct {
+	GqlProjectDir     string `json:"gqlProjectDir"`
 	AbiFile           string `json:"abiFile"`
 	GraphqlFile       string `json:"graphqlFile"`
 	ConflictBehaviour string `json:"conflictBehaviour"`
@@ -30,7 +31,7 @@ type GenerateGraphQLResponse struct {
 	}
 }
 
-func (a *projectManagerAPI) GraphQL(yamlFilepath string) (*GenerateGraphQLResponse, error) {
+func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string) (*GenerateGraphQLResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(yamlFilepath)
 	if err != nil {
 		return nil, err
@@ -58,6 +59,7 @@ func (a *projectManagerAPI) GraphQL(yamlFilepath string) (*GenerateGraphQLRespon
 	}
 
 	body, err := json.Marshal(GenerateGraphQLRequest{
+		GqlProjectDir:     gqlProjectDir,
 		AbiFile:           string(abiFile),
 		GraphqlFile:       string(schemaFile),
 		ConflictBehaviour: conflictBehavior,

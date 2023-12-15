@@ -10,7 +10,7 @@ import (
 	"github.com/paribu/acervus-cli/src/settings"
 )
 
-var projectDir, settingsFilePath string
+var projectDir, gqlProjectDir, settingsFilePath string
 var defaultSettingsFilepath = "settings.yaml"
 
 var projectName, projectDesc string
