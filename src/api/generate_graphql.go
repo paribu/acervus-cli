@@ -18,9 +18,9 @@ const (
 )
 
 type GenerateGraphQLRequest struct {
-	AbiFile           string `json:"abi_file"`
-	GraphqlFile       string `json:"graphql_file"`
-	ConflictBehaviour string `json:"conflict_behaviour"`
+	AbiFile           string `json:"abiFile"`
+	GraphqlFile       string `json:"graphqlFile"`
+	ConflictBehaviour string `json:"conflictBehaviour"`
 }
 
 type GenerateGraphQLResponse struct {
