@@ -42,5 +42,5 @@ var generateGraphQLCmd = &cobra.Command{
 
 func init() {
 	generateGraphQLCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
-	generateGraphQLCmd.Flags().BoolVarP(&autoSkip, "autoSkip", "a", false, "Set skip mode")
+	generateGraphQLCmd.Flags().BoolVarP(&autoSkip, "auto-skip", "a", false, "Set skip mode")
 }
