@@ -30,7 +30,7 @@ type GenerateGraphQLResponse struct {
 	}
 }
 
-func (a *projectManagerAPI) GraphQL(yamlFilepath string) (*GenerateGraphQLResponse, error) {
+func (a *projectManagerAPI) GraphQL(yamlFilepath string, autoSkipMode bool) (*GenerateGraphQLResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(yamlFilepath)
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func (a *projectManagerAPI) GraphQL(yamlFilepath string) (*GenerateGraphQLRespon
 	}
 
 	conflictBehavior := SkipOnConflict
-	if isOldSchemaExists {
+	if isOldSchemaExists && !autoSkipMode {
 		conflictBehavior = getConflictBehaviorChoice()
 	}
 

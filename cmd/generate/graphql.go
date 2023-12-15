@@ -17,7 +17,7 @@ var generateGraphQLCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		api := api.NewProjectManagerAPI()
 
-		response, err := api.GraphQL(settingsFilePath)
+		response, err := api.GraphQL(settingsFilePath, autoSkip)
 		if err != nil {
 			return fmt.Errorf("error when generating files: %s", err)
 		}
@@ -42,4 +42,5 @@ var generateGraphQLCmd = &cobra.Command{
 
 func init() {
 	generateGraphQLCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
+	generateGraphQLCmd.Flags().BoolVarP(&autoSkip, "autoSkip", "a", false, "Set skip mode")
 }
