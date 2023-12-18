@@ -17,7 +17,7 @@ var generateGraphQLCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		api := api.NewProjectManagerAPI()
 
-		response, err := api.GraphQL(settingsFilePath)
+		response, err := api.GraphQL(gqlProjectDir, settingsFilePath)
 		if err != nil {
 			return fmt.Errorf("error when generating files: %s", err)
 		}
@@ -41,5 +41,8 @@ var generateGraphQLCmd = &cobra.Command{
 }
 
 func init() {
+	generateGraphQLCmd.Flags().StringVarP(&gqlProjectDir, "dir", "d", "", "Directory where graphql files will be created")
+	generateGraphQLCmd.MarkFlagRequired("dir")
+
 	generateGraphQLCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
 }
