@@ -36,6 +36,8 @@ var generateGraphQLCmd = &cobra.Command{
 			}
 		}
 
+		fmt.Println("GraphQL files generated successfully")
+
 		return nil
 	},
 }
