@@ -42,15 +42,25 @@ func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkip
 		return nil, err
 	}
 
-	schemaFile, err := os.ReadFile(yamlFile.Schema)
-	if err != nil {
-		return nil, err
-	}
-
+	var schemaFileStr string
 	schemaFilePath := yamlFile.Schema
 	isOldSchemaExists := isFileExists(schemaFilePath)
-	if !isOldSchemaExists {
-		os.WriteFile(schemaFilePath, []byte(""), 0644)
+	if isOldSchemaExists {
+		// read old schema file when it exists
+		schemaFile, err := os.ReadFile(yamlFile.Schema)
+		if err != nil {
+			return nil, err
+		}
+
+		schemaFileStr = string(schemaFile)
+	} else {
+		// create empty schema file when it does not exist
+		err = os.WriteFile(schemaFilePath, []byte(""), 0644)
+		if err != nil {
+			return nil, err
+		}
+
+		schemaFileStr = ""
 	}
 
 	conflictBehavior := SkipOnConflict
@@ -61,7 +71,7 @@ func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkip
 	body, err := json.Marshal(GenerateGraphQLRequest{
 		GqlProjectDir:     gqlProjectDir,
 		AbiFile:           string(abiFile),
-		GraphqlFile:       string(schemaFile),
+		GraphqlFile:       schemaFileStr,
 		ConflictBehaviour: conflictBehavior,
 	})
 	if err != nil {
