@@ -6,17 +6,17 @@ import (
 	"github.com/paribu/acervus-cli/src/config"
 )
 
-type projectManagerAPI struct {
+type ProjectManagerAPI struct {
 	apiClient
 	BaseURL string
 }
 
-func NewProjectManagerAPI() *projectManagerAPI {
-	return &projectManagerAPI{
+func NewProjectManagerAPI() *ProjectManagerAPI {
+	return &ProjectManagerAPI{
 		BaseURL: config.ProjectManagerServiceURL,
 	}
 }
 
-func (a *projectManagerAPI) makeAuthenticatedAPIRequest(method, path string, body []byte) ([]byte, error) {
+func (a *ProjectManagerAPI) makeAuthenticatedAPIRequest(method, path string, body []byte) ([]byte, error) {
 	return a.makeAuthenticatedRequest(method, fmt.Sprintf("%s/%s", a.BaseURL, path), body)
 }

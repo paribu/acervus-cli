@@ -31,7 +31,7 @@ type GenerateGraphQLResponse struct {
 	}
 }
 
-func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkipMode bool) (*GenerateGraphQLResponse, error) {
+func (a *ProjectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkipMode bool) (*GenerateGraphQLResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(yamlFilepath)
 	if err != nil {
 		return nil, err

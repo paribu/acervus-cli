@@ -44,7 +44,7 @@ type ProjectItem struct {
 	UpdatedAt   string `json:"updatedAt"`
 }
 
-func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProjectResponse, error) {
+func (a *ProjectManagerAPI) CreateProject(settingsFilepath string) (*CreateProjectResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(settingsFilepath)
 	if err != nil {
 		return nil, err
@@ -73,7 +73,7 @@ func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProje
 	return &createProjectResp, nil
 }
 
-func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
+func (a *ProjectManagerAPI) ListProjects() ([]ProjectItem, error) {
 	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.project.list+"?page=1&limit=0", nil)
 	if err != nil {
 		return []ProjectItem{}, err
@@ -88,12 +88,12 @@ func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
 	return listResponse.Results, nil
 }
 
-func (a *projectManagerAPI) DeleteProject(projectID string) error {
+func (a *ProjectManagerAPI) DeleteProject(projectID string) error {
 	_, err := a.makeAuthenticatedAPIRequest(http.MethodDelete, endpoints.project.delete(projectID), nil)
 	return err
 }
 
-func (a *projectManagerAPI) ExportProject(projectID string) error {
+func (a *ProjectManagerAPI) ExportProject(projectID string) error {
 	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.export(projectID), nil)
 	return err
 }

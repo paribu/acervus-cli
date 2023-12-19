@@ -11,7 +11,7 @@ type NetworksResponse []struct {
 	UpdatedAt string `json:"updatedAt"`
 }
 
-func (a *projectManagerAPI) GetNetworks() (NetworksResponse, error) {
+func (a *ProjectManagerAPI) GetNetworks() (NetworksResponse, error) {
 	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.network.list, nil)
 	if err != nil {
 		return nil, err

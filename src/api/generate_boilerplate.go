@@ -21,7 +21,7 @@ type GenerateBoilerplateResponse struct {
 	}
 }
 
-func (a *projectManagerAPI) GenerateBoilerplate(settingsFilePath string) (*GenerateBoilerplateResponse, error) {
+func (a *ProjectManagerAPI) GenerateBoilerplate(settingsFilePath string) (*GenerateBoilerplateResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(settingsFilePath)
 	if err != nil {
 		return nil, err
