@@ -20,6 +20,7 @@ var ProjectCmd = &cobra.Command{
 		}
 
 		for _, project := range projects {
+			// TODO: pretty json data before printing
 			cmd.Println(project)
 		}
 
