@@ -53,7 +53,7 @@ type Log struct {
 	CreatedAt string `json:"created_at"`
 }
 
-func (a *ProjectManagerAPI) Test(projectID, settingsFilePath, projectFilePath string) (*TestResponse, error) {
+func (a *projectManagerAPI) Test(projectID, settingsFilePath, projectFilePath string) (*TestResponse, error) {
 	settingsFile, err := settings.NewProjectFromFile(settingsFilePath)
 	if err != nil {
 		return nil, err

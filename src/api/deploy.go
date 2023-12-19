@@ -20,7 +20,7 @@ type DeployResponse struct {
 	ResultMessage string `json:"resultMessage"`
 }
 
-func (a *ProjectManagerAPI) Deploy(projectID, settingsFilePath, projectFilePath string) (string, error) {
+func (a *projectManagerAPI) Deploy(projectID, settingsFilePath, projectFilePath string) (string, error) {
 	settingsFile, err := settings.NewProjectFromFile(settingsFilePath)
 	if err != nil {
 		return "", err

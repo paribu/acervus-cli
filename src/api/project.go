@@ -49,7 +49,7 @@ type ProjectItem struct {
 	UpdatedAt   string `json:"updatedAt"`
 }
 
-func (a *ProjectManagerAPI) CreateProject(settingsFilepath string) (*CreateProjectResponse, error) {
+func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProjectResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(settingsFilepath)
 	if err != nil {
 		return nil, err
@@ -82,7 +82,7 @@ func (a *ProjectManagerAPI) CreateProject(settingsFilepath string) (*CreateProje
 	return &createProjectResp, nil
 }
 
-func (a *ProjectManagerAPI) ListProjects() ([]ProjectItem, error) {
+func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
 	params, err := json.Marshal(PaginationRequest{
 		Page:  1,
 		Limit: 0,
@@ -105,12 +105,12 @@ func (a *ProjectManagerAPI) ListProjects() ([]ProjectItem, error) {
 	return listResponse.Results, nil
 }
 
-func (a *ProjectManagerAPI) DeleteProject(projectID string) error {
+func (a *projectManagerAPI) DeleteProject(projectID string) error {
 	_, err := a.makeAuthenticatedAPIRequest(http.MethodDelete, endpoints.project.delete(projectID), RequestData{})
 	return err
 }
 
-func (a *ProjectManagerAPI) ExportProject(projectID string) error {
+func (a *projectManagerAPI) ExportProject(projectID string) error {
 	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.export(projectID), RequestData{})
 	return err
 }

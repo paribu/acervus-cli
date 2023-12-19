@@ -15,7 +15,7 @@ type AuthResponse struct {
 	AccessToken  string `json:"accessToken"`
 }
 
-func (a *AuthAPI) Register(email, password string) (refreshToken, accessToken string, err error) {
+func (a *authAPI) Register(email, password string) (refreshToken, accessToken string, err error) {
 	reqBody, err := json.Marshal(AuthRequest{Email: email, Password: password})
 	if err != nil {
 		return "", "", err
@@ -39,7 +39,7 @@ func (a *AuthAPI) Register(email, password string) (refreshToken, accessToken st
 	return authResp.RefreshToken, authResp.AccessToken, nil
 }
 
-func (a *AuthAPI) Login(email, password string) (refreshToken, accessToken string, err error) {
+func (a *authAPI) Login(email, password string) (refreshToken, accessToken string, err error) {
 	reqBody, err := json.Marshal(AuthRequest{Email: email, Password: password})
 	if err != nil {
 		return "", "", err
@@ -63,7 +63,7 @@ func (a *AuthAPI) Login(email, password string) (refreshToken, accessToken strin
 	return authResp.RefreshToken, authResp.AccessToken, nil
 }
 
-func (a *AuthAPI) Logout() error {
+func (a *authAPI) Logout() error {
 	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.auth.logout, RequestData{})
 	return err
 }
