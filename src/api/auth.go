@@ -21,7 +21,11 @@ func (a *authAPI) Register(email, password string) (refreshToken, accessToken st
 		return "", "", err
 	}
 
-	resp, err := a.makeAPIRequest(http.MethodPost, endpoints.auth.register, reqBody)
+	resp, err := a.makeAPIRequest(
+		http.MethodPost,
+		endpoints.auth.register,
+		RequestData{Body: reqBody},
+	)
 	if err != nil {
 		return "", "", err
 	}
@@ -41,7 +45,11 @@ func (a *authAPI) Login(email, password string) (refreshToken, accessToken strin
 		return "", "", err
 	}
 
-	resp, err := a.makeAPIRequest(http.MethodPost, endpoints.auth.login, reqBody)
+	resp, err := a.makeAPIRequest(
+		http.MethodPost,
+		endpoints.auth.login,
+		RequestData{Body: reqBody},
+	)
 	if err != nil {
 		return "", "", err
 	}
@@ -56,6 +64,6 @@ func (a *authAPI) Login(email, password string) (refreshToken, accessToken strin
 }
 
 func (a *authAPI) Logout() error {
-	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.auth.logout, nil)
+	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.auth.logout, RequestData{})
 	return err
 }

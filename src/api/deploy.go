@@ -60,7 +60,11 @@ func (a *ProjectManagerAPI) Deploy(projectID, settingsFilePath, projectFilePath 
 		return "", err
 	}
 
-	_, err = a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.deploy(projectID), body)
+	_, err = a.makeAuthenticatedAPIRequest(
+		http.MethodPost,
+		endpoints.project.deploy(projectID),
+		RequestData{Body: body},
+	)
 	if err != nil {
 		return "", err
 	}

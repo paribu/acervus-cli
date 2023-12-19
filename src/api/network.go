@@ -12,7 +12,7 @@ type NetworksResponse []struct {
 }
 
 func (a *ProjectManagerAPI) GetNetworks() (NetworksResponse, error) {
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.network.list, nil)
+	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.network.list, RequestData{})
 	if err != nil {
 		return nil, err
 	}
