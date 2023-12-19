@@ -21,6 +21,12 @@ type CreateProjectResponse struct {
 	ProjectId   string `json:"projectId"`
 }
 
+type PaginationResult struct {
+	Results   []ProjectItem `json:"results"`
+	PageTotal int           `json:"pageTotal"`
+	Total     int           `json:"total"`
+}
+
 type ProjectItem struct {
 	UserId      string `json:"userId"`
 	Name        string `json:"name"`
@@ -68,18 +74,18 @@ func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProje
 }
 
 func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.project.list, nil)
+	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.project.list+"?page=1&limit=0", nil)
 	if err != nil {
 		return []ProjectItem{}, err
 	}
 
-	var listResponse []ProjectItem
+	var listResponse PaginationResult
 	err = json.Unmarshal(resp, &listResponse)
 	if err != nil {
 		return []ProjectItem{}, err
 	}
 
-	return listResponse, nil
+	return listResponse.Results, nil
 }
 
 func (a *projectManagerAPI) DeleteProject(projectID string) error {
