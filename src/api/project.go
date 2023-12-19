@@ -21,6 +21,17 @@ type CreateProjectResponse struct {
 	ProjectId   string `json:"projectId"`
 }
 
+type PaginationRequest struct {
+	Page  int `json:"page"`
+	Limit int `json:"limit"`
+}
+
+type PaginationResult struct {
+	Results   []ProjectItem `json:"results"`
+	PageTotal int           `json:"pageTotal"`
+	Total     int           `json:"total"`
+}
+
 type ProjectItem struct {
 	UserId      string `json:"userId"`
 	Name        string `json:"name"`
@@ -53,7 +64,11 @@ func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProje
 		return nil, err
 	}
 
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.create, body)
+	resp, err := a.makeAuthenticatedAPIRequest(
+		http.MethodPost,
+		endpoints.project.create,
+		RequestData{Body: body},
+	)
 	if err != nil {
 		return nil, err
 	}
@@ -68,26 +83,34 @@ func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProje
 }
 
 func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodGet, endpoints.project.list, nil)
+	params, err := json.Marshal(PaginationRequest{
+		Page:  1,
+		Limit: 0,
+	})
+	resp, err := a.makeAuthenticatedAPIRequest(
+		http.MethodGet,
+		endpoints.project.list,
+		RequestData{Params: params},
+	)
 	if err != nil {
 		return []ProjectItem{}, err
 	}
 
-	var listResponse []ProjectItem
+	var listResponse PaginationResult
 	err = json.Unmarshal(resp, &listResponse)
 	if err != nil {
 		return []ProjectItem{}, err
 	}
 
-	return listResponse, nil
+	return listResponse.Results, nil
 }
 
 func (a *projectManagerAPI) DeleteProject(projectID string) error {
-	_, err := a.makeAuthenticatedAPIRequest(http.MethodDelete, endpoints.project.delete(projectID), nil)
+	_, err := a.makeAuthenticatedAPIRequest(http.MethodDelete, endpoints.project.delete(projectID), RequestData{})
 	return err
 }
 
 func (a *projectManagerAPI) ExportProject(projectID string) error {
-	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.export(projectID), nil)
+	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.export(projectID), RequestData{})
 	return err
 }

@@ -51,7 +51,11 @@ func (a *projectManagerAPI) GenerateBoilerplate(settingsFilePath string) (*Gener
 		return nil, err
 	}
 
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.generate.boilerplate, body)
+	resp, err := a.makeAuthenticatedAPIRequest(
+		http.MethodPost,
+		endpoints.generate.boilerplate,
+		RequestData{Body: body},
+	)
 	if err != nil {
 		return nil, err
 	}

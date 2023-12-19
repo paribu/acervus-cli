@@ -78,7 +78,11 @@ func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkip
 		return nil, err
 	}
 
-	resp, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.generate.graphql, body)
+	resp, err := a.makeAuthenticatedAPIRequest(
+		http.MethodPost,
+		endpoints.generate.graphql,
+		RequestData{Body: body},
+	)
 	if err != nil {
 		return nil, err
 	}

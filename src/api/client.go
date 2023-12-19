@@ -18,50 +18,72 @@ const CLI_STATUS_CODE_INTERNAL_ERROR = -1
 
 type apiClient struct{}
 
-func (a *apiClient) makeAuthenticatedRequest(method, url string, body []byte) ([]byte, error) {
+type RequestData struct {
+	Body   []byte `json:"body"`
+	Params []byte `json:"params"`
+}
+
+func (a *apiClient) makeAuthenticatedRequest(method, url string, reqData RequestData) ([]byte, error) {
 	cred, err := credential.GetCurrentCredential()
 	if err != nil {
 		return []byte{}, err
 	}
 
-	body, statusCode, err := a.doRequest(method, url, cred.AccessToken, body)
+	respBody, respStatusCode, err := a.doRequest(method, url, cred.AccessToken, reqData)
 	if err != nil {
 		return []byte{}, err
 	}
 
-	if statusCode == http.StatusUnauthorized {
+	if respStatusCode == http.StatusUnauthorized {
 		err := a.refreshAccessToken()
 		if err != nil {
 			return []byte{}, err
 		}
 
-		return a.makeAuthenticatedRequest(method, url, body)
+		return a.makeAuthenticatedRequest(method, url, reqData)
 	}
 
-	if !isResponseOk(statusCode) {
-		return body, formatError(statusCode, body)
+	if !isResponseOk(respStatusCode) {
+		return respBody, formatRespError(respStatusCode, respBody)
 	}
 
-	return body, nil
+	return respBody, nil
 }
 
-func (a *apiClient) makeRequest(method, url string, body []byte) ([]byte, error) {
-	body, statusCode, err := a.doRequest(method, url, NO_ACCESS_TOKEN, body)
+func (a *apiClient) makeRequest(method, url string, reqData RequestData) ([]byte, error) {
+	respBody, statusCode, err := a.doRequest(method, url, NO_ACCESS_TOKEN, reqData)
 	if err != nil {
 		return []byte{}, err
 	}
 
 	if !isResponseOk(statusCode) {
-		return body, formatError(statusCode, body)
+		return respBody, formatRespError(statusCode, respBody)
 	}
 
-	return body, nil
+	return respBody, nil
 }
 
-func (a *apiClient) doRequest(method, url, accessToken string, body []byte) ([]byte, int, error) {
-	req, err := http.NewRequest(method, url, bytes.NewBuffer(body))
+func (a *apiClient) doRequest(method, url, accessToken string, reqData RequestData) ([]byte, int, error) {
+	req, err := http.NewRequest(method, url, bytes.NewBuffer(reqData.Body))
 	if err != nil {
 		return []byte{}, CLI_STATUS_CODE_INTERNAL_ERROR, err
+	}
+
+	if reqData.Params != nil {
+		// There is params provided for GET request,
+		// so we need to add them to the URL
+
+		paramsObj := make(map[string]interface{})
+		err = json.Unmarshal(reqData.Params, &paramsObj)
+		if err != nil {
+			return []byte{}, CLI_STATUS_CODE_INTERNAL_ERROR, fmt.Errorf("failed to unmarshal params: %w", err)
+		}
+
+		q := req.URL.Query()
+		for k, v := range paramsObj {
+			q.Add(k, fmt.Sprintf("%v", v))
+		}
+		req.URL.RawQuery = q.Encode()
 	}
 
 	req.Header.Set("Content-Type", "application/json")
@@ -104,14 +126,14 @@ func (a *apiClient) refreshAccessToken() error {
 		http.MethodPost,
 		fmt.Sprintf("%s/%s", config.AuthServiceURL, endpoints.auth.refreshToken),
 		cred.RefreshToken,
-		nil,
+		RequestData{},
 	)
 	if err != nil {
 		return err
 	}
 
 	if !isResponseOk(refreshTokenStatusCode) {
-		return formatError(refreshTokenStatusCode, refreshTokenResponse)
+		return formatRespError(refreshTokenStatusCode, refreshTokenResponse)
 	}
 
 	var authResp AuthResponse
@@ -138,9 +160,12 @@ func isResponseOk(statusCode int) bool {
 		statusCode == http.StatusCreated
 }
 
-func formatError(statusCode int, body []byte) error {
+func formatRespError(statusCode int, respBody []byte) error {
 	var respFields map[string]interface{}
-	json.Unmarshal(body, &respFields)
+	err := json.Unmarshal(respBody, &respFields)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal response body: %w", err)
+	}
 
 	message, ok := respFields["message"].(string)
 
