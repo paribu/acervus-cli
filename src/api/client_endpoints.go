@@ -20,6 +20,9 @@ type projectEndpoints struct {
 	test   func(projectID string) string
 	delete func(projectID string) string
 }
+type dataEndpoints struct {
+	list string
+}
 type networkEndpoints struct {
 	list string
 }
@@ -28,6 +31,7 @@ var endpoints = struct {
 	auth     authEndpoints
 	generate generateEndpoints
 	project  projectEndpoints
+	data     dataEndpoints
 	network  networkEndpoints
 }{
 	auth: authEndpoints{
@@ -55,6 +59,9 @@ var endpoints = struct {
 		delete: func(projectID string) string {
 			return fmt.Sprintf("projects/%s", projectID)
 		},
+	},
+	data: dataEndpoints{
+		list: "project-data",
 	},
 	network: networkEndpoints{
 		list: "networks",
