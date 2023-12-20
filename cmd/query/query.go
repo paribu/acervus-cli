@@ -15,5 +15,5 @@ var QueryCmd = &cobra.Command{
 
 func init() {
 	QueryCmd.AddCommand(queryDataCmd)
-	// TODO: add logs command
+	QueryCmd.AddCommand(queryLogsCmd)
 }

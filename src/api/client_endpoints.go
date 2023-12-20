@@ -23,6 +23,9 @@ type projectEndpoints struct {
 type dataEndpoints struct {
 	list string
 }
+type logEndpoints struct {
+	list string
+}
 type networkEndpoints struct {
 	list string
 }
@@ -32,6 +35,7 @@ var endpoints = struct {
 	generate generateEndpoints
 	project  projectEndpoints
 	data     dataEndpoints
+	log      logEndpoints
 	network  networkEndpoints
 }{
 	auth: authEndpoints{
@@ -62,6 +66,9 @@ var endpoints = struct {
 	},
 	data: dataEndpoints{
 		list: "project-data",
+	},
+	log: logEndpoints{
+		list: "project-logs",
 	},
 	network: networkEndpoints{
 		list: "networks",
