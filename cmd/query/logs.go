@@ -33,6 +33,8 @@ var queryLogsCmd = &cobra.Command{
 		} else {
 			logsListStr = fmt.Sprintf("%s\n", logsListStr)
 		}
+
+		cmd.Println("Logs list:")
 		cmd.Print(logsListStr)
 
 		return nil

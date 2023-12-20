@@ -36,6 +36,8 @@ var queryDataCmd = &cobra.Command{
 		} else {
 			dataListStr = fmt.Sprintf("%s\n", dataListStr)
 		}
+
+		cmd.Println("Data list:")
 		cmd.Print(dataListStr)
 
 		return nil
