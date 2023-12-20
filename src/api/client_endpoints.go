@@ -19,6 +19,7 @@ type projectEndpoints struct {
 	export func(projectID string) string
 	test   func(projectID string) string
 	pause  func(projectID string) string
+	resume func(projectID string) string
 	delete func(projectID string) string
 }
 type networkEndpoints struct {
@@ -55,6 +56,9 @@ var endpoints = struct {
 		},
 		pause: func(projectID string) string {
 			return fmt.Sprintf("projects/%s/pause", projectID)
+		},
+		resume: func(projectID string) string {
+			return fmt.Sprintf("projects/%s/resume", projectID)
 		},
 		delete: func(projectID string) string {
 			return fmt.Sprintf("projects/%s", projectID)

@@ -110,6 +110,11 @@ func (a *projectManagerAPI) PauseProject(projectID string) error {
 	return err
 }
 
+func (a *projectManagerAPI) ResumeProject(projectID string) error {
+	_, err := a.makeAuthenticatedAPIRequest(http.MethodPost, endpoints.project.resume(projectID), RequestData{})
+	return err
+}
+
 func (a *projectManagerAPI) DeleteProject(projectID string) error {
 	_, err := a.makeAuthenticatedAPIRequest(http.MethodDelete, endpoints.project.delete(projectID), RequestData{})
 	return err
