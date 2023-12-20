@@ -143,12 +143,16 @@ Currently supported platform for `-s` flag are `Subgraph`.
 
 /// This section needs improvement
 
-### Deleting a Project
+### Pausing / Resuming a Project
 
-To delete a project:
+To pause a project temporarily:
 
 ```
-acervus projects delete -p <project_id>
+acervus projects pause -i <project_id>
 ```
 
-Be careful, as this will permanently delete your project and all its data from the cloud.
+To resume a paused project:
+
+```
+acervus projects resume -i <project_id>
+```
