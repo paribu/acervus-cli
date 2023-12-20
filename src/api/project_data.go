@@ -7,9 +7,9 @@ import (
 )
 
 type ProjectDataListRequest struct {
-	ProjectId string `json:"projectId"`
-	Name      string `json:"name"`
-	Value     string `json:"valueFilters"`
+	ProjectId string `json:"projectId,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Value     string `json:"valueFilters,omitempty"`
 	Limit     int    `json:"limit"`
 	Page      int    `json:"page"`
 }
