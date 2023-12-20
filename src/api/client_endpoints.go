@@ -18,6 +18,7 @@ type projectEndpoints struct {
 	deploy func(projectID string) string
 	export func(projectID string) string
 	test   func(projectID string) string
+	pause  func(projectID string) string
 	delete func(projectID string) string
 }
 type networkEndpoints struct {
@@ -51,6 +52,9 @@ var endpoints = struct {
 		},
 		test: func(projectID string) string {
 			return fmt.Sprintf("projects/%s/test", projectID)
+		},
+		pause: func(projectID string) string {
+			return fmt.Sprintf("projects/%s/pause", projectID)
 		},
 		delete: func(projectID string) string {
 			return fmt.Sprintf("projects/%s", projectID)
