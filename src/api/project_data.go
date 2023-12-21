@@ -14,29 +14,6 @@ type ProjectDataListRequest struct {
 	Page      int    `json:"page"`
 }
 
-type ProjectDataListResponse struct {
-	Results   []ProjectDataItem `json:"results"`
-	PageTotal int               `json:"pageTotal"`
-	Total     int               `json:"total"`
-}
-
-type ProjectDataItem struct {
-	UserId      string `json:"userId"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Code        string `json:"code"`
-	Abi         string `json:"abi"`
-	Yaml        string `json:"yaml"`
-	Schema      string `json:"schema"`
-	Address     string `json:"address"`
-	Topic       string `json:"topic"`
-	StartBlock  int64  `json:"startBlock"`
-	EndBlock    int64  `json:"endBlock"`
-	IsDeleted   bool   `json:"isDeleted"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
-}
-
 func (a *projectManagerAPI) ListProjectData(filters ProjectDataListRequest) (string, error) {
 	params, err := json.Marshal(filters)
 	if err != nil {
