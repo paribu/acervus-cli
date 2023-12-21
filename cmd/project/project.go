@@ -30,6 +30,8 @@ var ProjectCmd = &cobra.Command{
 
 func init() {
 	ProjectCmd.AddCommand(createProjectCmd)
+	ProjectCmd.AddCommand(pauseProjectCmd)
+	ProjectCmd.AddCommand(resumeProjectCmd)
 	ProjectCmd.AddCommand(deleteProjectCmd)
 	ProjectCmd.AddCommand(exportProjectCmd)
 }
