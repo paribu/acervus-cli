@@ -23,8 +23,8 @@ func init() {
 }
 
 func setDefaultValues() {
-	viper.SetDefault("auth.url", "")           // TODO fill after it is determined
-	viper.SetDefault("projectManager.url", "") // TODO fill after it is determined
+	viper.SetDefault("auth.url", "https://beta.acervus.run")
+	viper.SetDefault("projectManager.url", "https://beta.acervus.run")
 	viper.SetDefault("allowUnsignedCert", false)
 }
 
