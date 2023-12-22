@@ -9,9 +9,9 @@ import (
 )
 
 type GenerateBoilerplateRequest struct {
-	AbiFile      string `json:"abi_file"`
-	SettingsFile string `json:"settings_file"`
-	GraphqlFile  string `json:"graphql_file"`
+	AbiFile      string `json:"abiFile"`
+	SettingsFile string `json:"settingsFile"`
+	GraphqlFile  string `json:"graphqlFile"`
 }
 
 type GenerateBoilerplateResponse struct {
