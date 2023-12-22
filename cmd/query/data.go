@@ -21,14 +21,13 @@ var queryDataCmd = &cobra.Command{
 			Name:      name,
 			Value:     filtersStr,
 			Limit:     limit,
-			Page:      1, // implement pagination if needed
+			Page:      1,
 		})
 		if err != nil {
 			return fmt.Errorf("error while getting data list: %s", err)
 		}
 
 		if pretty {
-			// pretty print json string
 			dataListStr, err = prettyJsonString(dataListStr)
 			if err != nil {
 				return fmt.Errorf("error while pretty printing data list: %s", err)

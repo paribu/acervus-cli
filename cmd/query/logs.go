@@ -18,14 +18,13 @@ var queryLogsCmd = &cobra.Command{
 			ProjectId: projectId,
 			Level:     logLevel.String(),
 			Limit:     limit,
-			Page:      1, // implement pagination if needed
+			Page:      1,
 		})
 		if err != nil {
 			return fmt.Errorf("error while getting logs list: %s", err)
 		}
 
 		if pretty {
-			// pretty print json string
 			logsListStr, err = prettyJsonString(logsListStr)
 			if err != nil {
 				return fmt.Errorf("error while pretty printing logs list: %s", err)
