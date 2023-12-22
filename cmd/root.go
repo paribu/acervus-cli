@@ -8,6 +8,7 @@ import (
 	"github.com/paribu/acervus-cli/cmd/generate"
 	"github.com/paribu/acervus-cli/cmd/migrate"
 	"github.com/paribu/acervus-cli/cmd/project"
+	"github.com/paribu/acervus-cli/cmd/query"
 	"github.com/paribu/acervus-cli/cmd/test"
 	"github.com/spf13/cobra"
 )
@@ -35,4 +36,5 @@ func init() {
 	rootCmd.AddCommand(migrate.MigrateCmd)
 	rootCmd.AddCommand(project.ProjectCmd)
 	rootCmd.AddCommand(test.TestCmd)
+	rootCmd.AddCommand(query.QueryCmd)
 }

@@ -1,6 +1,7 @@
 package project
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/paribu/acervus-cli/src/api"
@@ -20,7 +21,12 @@ var ProjectCmd = &cobra.Command{
 		}
 
 		for _, project := range projects {
-			cmd.Println(project)
+			prettiedProject, err := json.MarshalIndent(project, "", "  ")
+			if err != nil {
+				return err
+			}
+
+			cmd.Println(string(prettiedProject))
 		}
 
 		return nil
