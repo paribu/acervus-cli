@@ -37,7 +37,7 @@ Choose the one you want to activate, and it will be set as your current credenti
 		selectedIndex := -1
 
 		if email != "" {
-			selectedIndex = selecCredentialWithEmail(credentials, email)
+			selectedIndex = selectCredentialWithEmail(credentials, email)
 		} else {
 			selectedIndex = chooseCredential(cmd, credentials)
 		}
@@ -65,7 +65,7 @@ func init() {
 	AuthCmd.Flags().StringVarP(&email, "email", "e", "", "Switch to a specific credential by email")
 }
 
-func selecCredentialWithEmail(credentials []*credential.Credential, email string) int {
+func selectCredentialWithEmail(credentials []*credential.Credential, email string) int {
 	var selectedIndex int = -1
 	for i, cred := range credentials {
 		if cred.Email == email {
