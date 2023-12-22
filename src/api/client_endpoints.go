@@ -9,8 +9,8 @@ type authEndpoints struct {
 	logout       string
 }
 type generateEndpoints struct {
-	boilerplate string
-	graphql     string
+	boilerplate func(projectID string) string
+	graphql     func(projectID string) string
 }
 type projectEndpoints struct {
 	list   string
@@ -47,8 +47,12 @@ var endpoints = struct {
 		logout:       "auth/logout",
 	},
 	generate: generateEndpoints{
-		boilerplate: "generate/boilerplate",
-		graphql:     "generate/graphql",
+		boilerplate: func(projectID string) string {
+			return fmt.Sprintf("generate/%s/boilerplate", projectID)
+		},
+		graphql: func(projectID string) string {
+			return fmt.Sprintf("generate/%s/graphql", projectID)
+		},
 	},
 	project: projectEndpoints{
 		list:   "projects",

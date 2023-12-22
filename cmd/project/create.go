@@ -27,7 +27,7 @@ var createProjectCmd = &cobra.Command{
 
 		api := api.NewProjectManagerAPI()
 
-		boilerplateRes, err := api.GenerateBoilerplate(defaultSettingsFilepath)
+		boilerplateRes, err := api.GenerateBoilerplate(projectID, defaultSettingsFilepath)
 		if err != nil {
 			return fmt.Errorf("error generating files: %s", err)
 		}

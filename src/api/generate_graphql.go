@@ -31,7 +31,7 @@ type GenerateGraphQLResponse struct {
 	}
 }
 
-func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkipMode bool) (*GenerateGraphQLResponse, error) {
+func (a *projectManagerAPI) GraphQL(projectID string, gqlProjectDir, yamlFilepath string, autoSkipMode bool) (*GenerateGraphQLResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(yamlFilepath)
 	if err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ func (a *projectManagerAPI) GraphQL(gqlProjectDir, yamlFilepath string, autoSkip
 
 	resp, err := a.makeAuthenticatedAPIRequest(
 		http.MethodPost,
-		endpoints.generate.graphql,
+		endpoints.generate.graphql(projectID),
 		RequestData{Body: body},
 	)
 	if err != nil {
