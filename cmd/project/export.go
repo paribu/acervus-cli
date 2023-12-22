@@ -26,6 +26,6 @@ var exportProjectCmd = &cobra.Command{
 }
 
 func init() {
-	exportProjectCmd.Flags().StringVarP(&projectID, "id", "p", "", "ID of the project you want to export")
+	exportProjectCmd.Flags().StringVarP(&projectID, "id", "i", "", "ID of the project you want to export")
 	exportProjectCmd.MarkFlagRequired("id")
 }

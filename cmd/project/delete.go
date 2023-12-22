@@ -26,6 +26,6 @@ var deleteProjectCmd = &cobra.Command{
 }
 
 func init() {
-	deleteProjectCmd.Flags().StringVarP(&projectID, "id", "p", "", "ID of the project you want to delete")
+	deleteProjectCmd.Flags().StringVarP(&projectID, "id", "i", "", "ID of the project you want to delete")
 	deleteProjectCmd.MarkFlagRequired("id")
 }

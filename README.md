@@ -126,7 +126,7 @@ This lists your cloud-based projects.
 To export your project data:
 
 ```
-acervus projects export -p <project_id> 
+acervus projects export -i <project_id> 
 ```
 
 This sends a download link to your account email.
