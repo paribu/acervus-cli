@@ -22,6 +22,10 @@ type AuthResponse struct {
 	AccessToken  string `json:"accessToken"`
 }
 
+type RecoverPasswordRequest struct {
+	Email string `json:"email"`
+}
+
 func (a *authAPI) Register(email, password string) (refreshToken, accessToken string, err error) {
 	reqBody, err := json.Marshal(AuthRequest{Email: email, Password: password})
 	if err != nil {
@@ -68,6 +72,21 @@ func (a *authAPI) Login(email, password string) (refreshToken, accessToken strin
 	}
 
 	return authResp.RefreshToken, authResp.AccessToken, nil
+}
+
+func (a *authAPI) RecoverPassword(email string) (string, error) {
+	reqBody, err := json.Marshal(RecoverPasswordRequest{Email: email})
+	if err != nil {
+		return "", err
+	}
+
+	resp, err := a.makeAPIRequest(
+		http.MethodPost,
+		endpoints.auth.recoverPassword,
+		RequestData{Body: reqBody},
+	)
+
+	return string(resp), err
 }
 
 func (a *authAPI) ResetPassword(email, password, verificationCode string) (string, error) {

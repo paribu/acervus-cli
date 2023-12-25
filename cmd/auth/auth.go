@@ -62,6 +62,7 @@ func init() {
 	AuthCmd.AddCommand(registerCmd)
 	AuthCmd.AddCommand(resetPasswordCmd)
 	AuthCmd.AddCommand(logoutCmd)
+	AuthCmd.AddCommand(passwordRecoveryCmd)
 
 	AuthCmd.Flags().StringVarP(&email, "email", "e", "", "Switch to a specific credential by email")
 }

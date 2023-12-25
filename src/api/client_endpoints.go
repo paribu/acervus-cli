@@ -3,11 +3,12 @@ package api
 import "fmt"
 
 type authEndpoints struct {
-	register      string
-	login         string
-	refreshToken  string
-	resetPassword string
-	logout        string
+	register        string
+	login           string
+	refreshToken    string
+	recoverPassword string
+	resetPassword   string
+	logout          string
 }
 type generateEndpoints struct {
 	boilerplate func(projectID string) string
@@ -42,11 +43,12 @@ var endpoints = struct {
 	network  networkEndpoints
 }{
 	auth: authEndpoints{
-		register:      "auth/register",
-		login:         "auth/login",
-		refreshToken:  "auth/refresh",
-		resetPassword: "auth/reset-password",
-		logout:        "auth/logout",
+		register:        "auth/register",
+		login:           "auth/login",
+		refreshToken:    "auth/refresh",
+		recoverPassword: "auth/recover-password",
+		resetPassword:   "auth/reset-password",
+		logout:          "auth/logout",
 	},
 	generate: generateEndpoints{
 		boilerplate: func(projectID string) string {
