@@ -14,7 +14,7 @@ var projectDir, gqlProjectDir, settingsFilePath string
 var defaultSettingsFilepath = "settings.yaml"
 var autoSkip bool
 
-var projectName, projectDesc string
+var projectName, projectDesc, projectID string
 var network string
 var contractAddr, contractName string
 var abiPath string
