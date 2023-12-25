@@ -60,6 +60,7 @@ Choose the one you want to activate, and it will be set as your current credenti
 func init() {
 	AuthCmd.AddCommand(loginCmd)
 	AuthCmd.AddCommand(registerCmd)
+	AuthCmd.AddCommand(resetPasswordCmd)
 	AuthCmd.AddCommand(logoutCmd)
 
 	AuthCmd.Flags().StringVarP(&email, "email", "e", "", "Switch to a specific credential by email")
