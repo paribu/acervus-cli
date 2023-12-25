@@ -7,6 +7,7 @@ type authEndpoints struct {
 	login           string
 	refreshToken    string
 	recoverPassword string
+	resetPassword   string
 	logout          string
 }
 type generateEndpoints struct {
@@ -46,6 +47,7 @@ var endpoints = struct {
 		login:           "auth/login",
 		refreshToken:    "auth/refresh",
 		recoverPassword: "auth/recover-password",
+		resetPassword:   "auth/reset-password",
 		logout:          "auth/logout",
 	},
 	generate: generateEndpoints{

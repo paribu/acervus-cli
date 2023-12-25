@@ -1,3 +1,3 @@
 package auth
 
-var email, password string
+var email, password, verificationCode string

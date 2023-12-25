@@ -2,12 +2,19 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
 type AuthRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type ResetPasswordRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Code     string `json:"code"`
 }
 
 type AuthResponse struct {
@@ -76,6 +83,21 @@ func (a *authAPI) RecoverPassword(email string) (string, error) {
 	resp, err := a.makeAPIRequest(
 		http.MethodPost,
 		endpoints.auth.recoverPassword,
+		RequestData{Body: reqBody},
+	)
+
+	return string(resp), err
+}
+
+func (a *authAPI) ResetPassword(email, password, verificationCode string) (string, error) {
+	reqBody, err := json.Marshal(ResetPasswordRequest{Email: email, Password: password, Code: verificationCode})
+	if err != nil {
+		return "", fmt.Errorf("could not marshal request body: %v", err)
+	}
+
+	resp, err := a.makeAPIRequest(
+		http.MethodPost,
+		endpoints.auth.resetPassword,
 		RequestData{Body: reqBody},
 	)
 
