@@ -21,7 +21,7 @@ type GenerateBoilerplateResponse struct {
 	}
 }
 
-func (a *projectManagerAPI) GenerateBoilerplate(settingsFilePath string) (*GenerateBoilerplateResponse, error) {
+func (a *projectManagerAPI) GenerateBoilerplate(projectID string, settingsFilePath string) (*GenerateBoilerplateResponse, error) {
 	yamlFile, err := settings.NewProjectFromFile(settingsFilePath)
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func (a *projectManagerAPI) GenerateBoilerplate(settingsFilePath string) (*Gener
 
 	resp, err := a.makeAuthenticatedAPIRequest(
 		http.MethodPost,
-		endpoints.generate.boilerplate,
+		endpoints.generate.boilerplate(projectID),
 		RequestData{Body: body},
 	)
 	if err != nil {

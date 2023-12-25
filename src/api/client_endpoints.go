@@ -3,14 +3,16 @@ package api
 import "fmt"
 
 type authEndpoints struct {
-	register     string
-	login        string
-	refreshToken string
-	logout       string
+	register        string
+	login           string
+	refreshToken    string
+	recoverPassword string
+	resetPassword   string
+	logout          string
 }
 type generateEndpoints struct {
-	boilerplate string
-	graphql     string
+	boilerplate func(projectID string) string
+	graphql     func(projectID string) string
 }
 type projectEndpoints struct {
 	list   string
@@ -41,14 +43,20 @@ var endpoints = struct {
 	network  networkEndpoints
 }{
 	auth: authEndpoints{
-		register:     "auth/register",
-		login:        "auth/login",
-		refreshToken: "auth/refresh",
-		logout:       "auth/logout",
+		register:        "auth/register",
+		login:           "auth/login",
+		refreshToken:    "auth/refresh",
+		recoverPassword: "auth/recover-password",
+		resetPassword:   "auth/reset-password",
+		logout:          "auth/logout",
 	},
 	generate: generateEndpoints{
-		boilerplate: "generate/boilerplate",
-		graphql:     "generate/graphql",
+		boilerplate: func(projectID string) string {
+			return fmt.Sprintf("generate/%s/boilerplate", projectID)
+		},
+		graphql: func(projectID string) string {
+			return fmt.Sprintf("generate/%s/graphql", projectID)
+		},
 	},
 	project: projectEndpoints{
 		list:   "projects",

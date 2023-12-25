@@ -23,7 +23,7 @@ It's automatically runs when you create a new project.`,
 			projectDir = prompt.GetProjectDirectory()
 		}
 
-		boilerplateRes, err := api.GenerateBoilerplate(settingsFilePath)
+		boilerplateRes, err := api.GenerateBoilerplate(projectID, settingsFilePath)
 		if err != nil {
 			return fmt.Errorf("error when generating files: %s", err)
 		}
@@ -46,6 +46,8 @@ It's automatically runs when you create a new project.`,
 }
 
 func init() {
+	generateBoilerplateCmd.Flags().StringVarP(&projectID, "id", "i", "", "ID of the project you want to generate boilerplate for")
+	generateBoilerplateCmd.MarkFlagRequired("id")
 	generateBoilerplateCmd.Flags().StringVarP(&projectDir, "dir", "d", "", "Directory where the generated files will be placed")
 	generateBoilerplateCmd.Flags().StringVarP(&settingsFilePath, "settings", "s", "./settings.yaml", "Path to settings file")
 }
