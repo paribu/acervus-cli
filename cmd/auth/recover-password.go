@@ -22,7 +22,7 @@ var passwordRecoveryCmd = &cobra.Command{
 			return err
 		}
 
-		fmt.Println("Password recovery email sent. Check your inbox for instructions.")
+		cmd.Printf("Password recovery email sent. Check your inbox for instructions.")
 		return nil
 	},
 }
