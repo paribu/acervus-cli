@@ -10,7 +10,7 @@ const (
 
 type Credential struct {
 	Email        string `json:"email"`
-	RefreshToken string `json:"refresh_token"`
-	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refreshToken"`
+	AccessToken  string `json:"accessToken"`
 	Current      bool   `json:"current"`
 }

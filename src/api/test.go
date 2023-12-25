@@ -26,31 +26,31 @@ type Result struct {
 	Status       bool   `json:"status"`
 	Data         []Data `json:"data"`
 	Logs         []Log  `json:"logs"`
-	ErrorMessage string `json:"error_message"`
+	ErrorMessage string `json:"errorMessage"`
 }
 
 type Data struct {
 	Name      string `json:"name"`
 	Value     string `json:"value"`
-	CreatedAt string `json:"created_at"`
+	CreatedAt string `json:"createdAt"`
 }
 
 type Event struct {
-	ContractAddress string   `json:"contract_address"`
-	BlockNumber     uint32   `json:"block_number"`
-	BlockHash       string   `json:"block_hash"`
-	TransactionHash string   `json:"transaction_hash"`
-	LogIndex        uint32   `json:"log_index"`
-	EventCount      uint32   `json:"event_count"`
+	ContractAddress string   `json:"contractAddress"`
+	BlockNumber     uint32   `json:"blockNumber"`
+	BlockHash       string   `json:"blockHash"`
+	TransactionHash string   `json:"transactionHash"`
+	LogIndex        uint32   `json:"logIndex"`
+	EventCount      uint32   `json:"eventCount"`
 	Topics          []string `json:"topics"`
 	Data            string   `json:"data"`
-	IsCRUDMode      bool     `json:"is_crud_mode"`
+	IsCRUDMode      bool     `json:"isCrudMode"`
 }
 
 type Log struct {
 	Log       string `json:"log"`
 	Level     string `json:"level"`
-	CreatedAt string `json:"created_at"`
+	CreatedAt string `json:"createdAt"`
 }
 
 func (a *projectManagerAPI) Test(projectID, settingsFilePath, projectFilePath string) (*TestResponse, error) {
