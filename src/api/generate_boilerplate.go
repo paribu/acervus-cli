@@ -15,10 +15,12 @@ type GenerateBoilerplateRequest struct {
 }
 
 type GenerateBoilerplateResponse struct {
-	Files []struct {
-		Path     string `json:"path"`
-		Contents string `json:"contents"`
-	}
+	Files []File `json:"files"`
+}
+
+type File struct {
+	Path     string `json:"path"`
+	Contents string `json:"contents"`
 }
 
 func (a *projectManagerAPI) GenerateBoilerplate(projectID string, settingsFilePath string) (*GenerateBoilerplateResponse, error) {
