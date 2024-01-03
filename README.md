@@ -14,7 +14,25 @@ Using `--help` flag with commands will display additional information about that
 
 ## Installation
 
-The installation process is currently being developed and will be provided in the future.
+### macOS
+
+#### Using Homebrew
+
+You should tap the `paribu/acervus` repository to install `acervus`.
+
+`brew install paribu/acervus/acervus`
+
+Or `brew tap paribu/acervus` and then `brew install acervus`.
+
+You can visit the tap at https://github.com/paribu/homebrew-acervus
+
+### Linux
+
+You can use Homebrew to install ( see macOS instructions above ). Other installation methods will soon be available.
+
+### Windows 
+
+Currently, only building from source is supported. Other installation methods will soon be available.
 
 ## Usage Instructions
 
