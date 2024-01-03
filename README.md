@@ -166,7 +166,7 @@ After a period of waiting (keep in mind, indexing does take some time, but it's 
 To do this, simply run the following command in your terminal:
 
 ```bash
-$ acervus-cli query data
+$ acervus query data
 ```
 
 When you execute the command, you can expect to receive a result similar to the following:
