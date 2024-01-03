@@ -8,6 +8,28 @@ Indexing and tracking blockchains can be complex. Acervus simplifies this.
 
 Rather than relying on general-purpose indexers or APIs, you can write a few lines of code, upload it to Acervus, and access blockchain data tailored to your specifications. We've already indexed all the data from certain blockchains, enabling you to filter, transform, and query them to meet your specific requirements.
 
+## Installation
+
+### macOS
+
+#### Using Homebrew
+
+You should tap the `paribu/acervus` repository to install `acervus`.
+
+`brew install paribu/acervus/acervus`
+
+Or `brew tap paribu/acervus` and then `brew install acervus`.
+
+You can visit the tap at https://github.com/paribu/homebrew-acervus
+
+### Linux
+
+You can use Homebrew to install ( see macOS instructions above ). Other installation methods will soon be available.
+
+### Windows
+
+Currently, only building from source is supported. Other installation methods will soon be available.
+
 ## How it works? An example:
 
 Assuming you're keen on tracking an NFT collection, let's say you're curious to find out which NFT is the most popular based on the number of times it's been sold or changed owners. Take the [MutantApe YachtClub](https://etherscan.io/token/0x60e4d786628fea6478f785a6d7e704777c86a7c6) NFT collection as an example.
@@ -144,7 +166,7 @@ After a period of waiting (keep in mind, indexing does take some time, but it's 
 To do this, simply run the following command in your terminal:
 
 ```bash
-$ acervus-cli query data
+$ acervus query data
 ```
 
 When you execute the command, you can expect to receive a result similar to the following:
