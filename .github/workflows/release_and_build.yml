@@ -1,0 +1,69 @@
+name: new_release
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Read release.json
+        id: release_json
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: 'release.json'
+      - run: |
+          echo acervus version: ${{ steps.release_json.outputs.version }}
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "v${{ steps.release_json.outputs.version }}"
+          name: Release v${{ steps.release_json.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+
+  build:
+    needs:
+      - release
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # build and publish in parallel: linux/386, linux/amd64, linux/arm64, windows/386, windows/amd64, darwin/amd64, darwin/arm64
+        goos: [ linux, windows, darwin ]
+        goarch: [ "386", amd64, arm64 ]
+        exclude:
+          - goarch: "386"
+            goos: darwin
+          - goarch: arm64
+            goos: windows
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Read release.json
+        id: release_json
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: 'release.json'
+      - run: |
+          echo acervus version: ${{ steps.release_json.outputs.version }}
+          echo go version: ${{ steps.release_json.outputs.go_version }}
+      - name: Build acervus binary
+        uses: wangyoucao577/go-release-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          goos: ${{ matrix.goos }}
+          goarch: ${{ matrix.goarch }}
+          goversion: ${{ steps.release_json.outputs.go_version }}
+          md5sum: true
+          sha256sum: true
+          # goversion: "https://dl.google.com/go/go${{ steps.release_json.outputs.go_version }}.linux-amd64.tar.gz"
+          release_tag: "v${{ steps.release_json.outputs.version }}"
+          # if we don't want to use default "go build" command, we can modify it like this:
+          # build_command: make
+          binary_name: acervus
