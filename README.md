@@ -16,9 +16,17 @@ Rather than relying on general-purpose indexers or APIs, you can write a few lin
 
 You should tap the `paribu/acervus` repository to install `acervus`.
 
-`brew install paribu/acervus/acervus`
+```
+brew install paribu/acervus/acervus
+```
 
 Or `brew tap paribu/acervus` and then `brew install acervus`.
+
+This tool is constantly updated, so don't forget to run following command to get latest updates:
+
+```
+brew upgrade acervus
+```
 
 You can visit the tap at https://github.com/paribu/homebrew-acervus
 
