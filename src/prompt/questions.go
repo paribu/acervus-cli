@@ -222,8 +222,5 @@ You can select multiple events by pressing the space bar.
 If you want to index all events, don't select any events and press enter.`,
 	}
 	crudEvents := GetMultiSelect(crudModeEventsPc, events)
-	if len(crudEvents) == 0 {
-		crudEvents = events
-	}
 	return crudEvents
 }
