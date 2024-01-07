@@ -218,8 +218,7 @@ func GetCrudEvents(events []string) []string {
 		Label:   "CRUD events",
 		Default: strings.Join(events, "-"),
 		Help: `Select the events you want to index in CRUD mode.
-You can select multiple events by pressing the space bar.
-If you want to index all events, don't select any events and press enter.`,
+You can select multiple events by pressing the space bar.`,
 	}
 	crudEvents := GetMultiSelect(crudModeEventsPc, events)
 	return crudEvents
