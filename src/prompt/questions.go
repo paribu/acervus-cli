@@ -10,6 +10,7 @@ import (
 var MigratePlatforms = []string{"Subgraph"}
 var ContractNameRegex = `^[a-zA-Z_][a-zA-Z0-9_]*$`
 var defaultSchemaFilepath = "./schema.graphql"
+var defaultAbiFilepath = "./abi.json"
 
 func GetContinue(filename string) string {
 	continuePc := PromptContent{
@@ -132,7 +133,7 @@ func GetAbiPath() string {
 	abiPathPc := PromptContent{
 		Name:    "ABI Path",
 		Label:   "ABI path",
-		Default: "./abi.json",
+		Default: defaultAbiFilepath,
 		Help: `Enter the path to your smart contract's Application Binary Interface (ABI) file.
 The ABI defines how your project will interact with the contract.
 Example path: './abi.json'.`,
