@@ -10,6 +10,7 @@ import (
 var MigratePlatforms = []string{"Subgraph"}
 var ContractNameRegex = `^[a-zA-Z_][a-zA-Z0-9_]*$`
 var defaultSchemaFilepath = "./schema.graphql"
+var defaultAbiFilepath = "./abi.json"
 
 func GetContinue(filename string) string {
 	continuePc := PromptContent{
@@ -132,7 +133,7 @@ func GetAbiPath() string {
 	abiPathPc := PromptContent{
 		Name:    "ABI Path",
 		Label:   "ABI path",
-		Default: "./abi.json",
+		Default: defaultAbiFilepath,
 		Help: `Enter the path to your smart contract's Application Binary Interface (ABI) file.
 The ABI defines how your project will interact with the contract.
 Example path: './abi.json'.`,
@@ -218,12 +219,8 @@ func GetCrudEvents(events []string) []string {
 		Label:   "CRUD events",
 		Default: strings.Join(events, "-"),
 		Help: `Select the events you want to index in CRUD mode.
-You can select multiple events by pressing the space bar.
-If you want to index all events, don't select any events and press enter.`,
+You can select multiple events by pressing the space bar.`,
 	}
 	crudEvents := GetMultiSelect(crudModeEventsPc, events)
-	if len(crudEvents) == 0 {
-		crudEvents = events
-	}
 	return crudEvents
 }
