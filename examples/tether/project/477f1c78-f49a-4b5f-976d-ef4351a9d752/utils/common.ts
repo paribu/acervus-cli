@@ -11,7 +11,7 @@ export function loadString(ptr: i32): string {
 		str += String.fromCharCode(char);
 		ptr++;
 	}
-	__free(tmp);
+	freeMemory(tmp);
 	return str;
 }
 
@@ -52,7 +52,7 @@ export function convertToString<T>(value: T): string {
     }
 
 	if (value instanceof BigInt) {
-		return (value as BigInt)!.toString();
+		return (value as BigInt).toString();
 	}
 
 	// @ts-ignore
