@@ -1,400 +1,542 @@
 import { BigInt } from "../lib/bigint";
 export namespace filter {
-export class IssueEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+  export class IssueEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-	protected amount: BigInt = BigInt.from(0);
-	protected isSetAmount: bool = false;
-	set Amount(value: BigInt) {
-		this.isSetAmount = true;
-		this.amount = value;
-	}
-	get Amount(): BigInt {
-		 return this.amount;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-	get IsSetAmount(): bool {
-		 return this.isSetAmount;
-	}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-}
+    protected amount: BigInt = BigInt.from(0);
+    protected isSetAmount: bool = false;
+    set Amount(value: BigInt) {
+      this.isSetAmount = true;
+      this.amount = value;
+    }
+    get Amount(): BigInt {
+      return this.amount;
+    }
 
-export class RedeemEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    get IsSetAmount(): bool {
+      return this.isSetAmount;
+    }
+  }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+  export class RedeemEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	protected amount: BigInt = BigInt.from(0);
-	protected isSetAmount: bool = false;
-	set Amount(value: BigInt) {
-		this.isSetAmount = true;
-		this.amount = value;
-	}
-	get Amount(): BigInt {
-		 return this.amount;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-	get IsSetAmount(): bool {
-		 return this.isSetAmount;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-export class DeprecateEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    protected amount: BigInt = BigInt.from(0);
+    protected isSetAmount: bool = false;
+    set Amount(value: BigInt) {
+      this.isSetAmount = true;
+      this.amount = value;
+    }
+    get Amount(): BigInt {
+      return this.amount;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    get IsSetAmount(): bool {
+      return this.isSetAmount;
+    }
+  }
 
-	protected newAddress: string = "";
-	protected isSetNewAddress: bool = false;
-	set NewAddress(value: string) {
-		this.isSetNewAddress = true;
-		this.newAddress = value;
-	}
-	get NewAddress(): string {
-		 return this.newAddress;
-	}
+  export class DeprecateEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	get IsSetNewAddress(): bool {
-		 return this.isSetNewAddress;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-export class ParamsEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    protected newAddress: string = "";
+    protected isSetNewAddress: bool = false;
+    set NewAddress(value: string) {
+      this.isSetNewAddress = true;
+      this.newAddress = value;
+    }
+    get NewAddress(): string {
+      return this.newAddress;
+    }
 
-	protected feeBasisPoints: BigInt = BigInt.from(0);
-	protected isSetFeeBasisPoints: bool = false;
-	set FeeBasisPoints(value: BigInt) {
-		this.isSetFeeBasisPoints = true;
-		this.feeBasisPoints = value;
-	}
-	get FeeBasisPoints(): BigInt {
-		 return this.feeBasisPoints;
-	}
+    get IsSetNewAddress(): bool {
+      return this.isSetNewAddress;
+    }
+  }
 
-	get IsSetFeeBasisPoints(): bool {
-		 return this.isSetFeeBasisPoints;
-	}
+  export class ParamsEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	protected maxFee: BigInt = BigInt.from(0);
-	protected isSetMaxFee: bool = false;
-	set MaxFee(value: BigInt) {
-		this.isSetMaxFee = true;
-		this.maxFee = value;
-	}
-	get MaxFee(): BigInt {
-		 return this.maxFee;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-	get IsSetMaxFee(): bool {
-		 return this.isSetMaxFee;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-export class DestroyedBlackFundsEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    protected feeBasisPoints: BigInt = BigInt.from(0);
+    protected isSetFeeBasisPoints: bool = false;
+    set FeeBasisPoints(value: BigInt) {
+      this.isSetFeeBasisPoints = true;
+      this.feeBasisPoints = value;
+    }
+    get FeeBasisPoints(): BigInt {
+      return this.feeBasisPoints;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    get IsSetFeeBasisPoints(): bool {
+      return this.isSetFeeBasisPoints;
+    }
 
-	protected _blackListedUser: string = "";
-	protected isSetBlackListedUser: bool = false;
-	set BlackListedUser(value: string) {
-		this.isSetBlackListedUser = true;
-		this._blackListedUser = value;
-	}
-	get BlackListedUser(): string {
-		 return this._blackListedUser;
-	}
+    protected maxFee: BigInt = BigInt.from(0);
+    protected isSetMaxFee: bool = false;
+    set MaxFee(value: BigInt) {
+      this.isSetMaxFee = true;
+      this.maxFee = value;
+    }
+    get MaxFee(): BigInt {
+      return this.maxFee;
+    }
 
-	get IsSetBlackListedUser(): bool {
-		 return this.isSetBlackListedUser;
-	}
+    get IsSetMaxFee(): bool {
+      return this.isSetMaxFee;
+    }
+  }
 
-	protected _balance: BigInt = BigInt.from(0);
-	protected isSetBalance: bool = false;
-	set Balance(value: BigInt) {
-		this.isSetBalance = true;
-		this._balance = value;
-	}
-	get Balance(): BigInt {
-		 return this._balance;
-	}
+  export class DestroyedBlackFundsEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	get IsSetBalance(): bool {
-		 return this.isSetBalance;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-export class AddedBlackListEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    protected _blackListedUser: string = "";
+    protected isSetBlackListedUser: bool = false;
+    set BlackListedUser(value: string) {
+      this.isSetBlackListedUser = true;
+      this._blackListedUser = value;
+    }
+    get BlackListedUser(): string {
+      return this._blackListedUser;
+    }
 
-	protected _user: string = "";
-	protected isSetUser: bool = false;
-	set User(value: string) {
-		this.isSetUser = true;
-		this._user = value;
-	}
-	get User(): string {
-		 return this._user;
-	}
+    get IsSetBlackListedUser(): bool {
+      return this.isSetBlackListedUser;
+    }
 
-	get IsSetUser(): bool {
-		 return this.isSetUser;
-	}
+    protected _balance: BigInt = BigInt.from(0);
+    protected isSetBalance: bool = false;
+    set Balance(value: BigInt) {
+      this.isSetBalance = true;
+      this._balance = value;
+    }
+    get Balance(): BigInt {
+      return this._balance;
+    }
 
-}
+    get IsSetBalance(): bool {
+      return this.isSetBalance;
+    }
+  }
 
-export class RemovedBlackListEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+  export class AddedBlackListEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-	protected _user: string = "";
-	protected isSetUser: bool = false;
-	set User(value: string) {
-		this.isSetUser = true;
-		this._user = value;
-	}
-	get User(): string {
-		 return this._user;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-	get IsSetUser(): bool {
-		 return this.isSetUser;
-	}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-}
+    protected _user: string = "";
+    protected isSetUser: bool = false;
+    set User(value: string) {
+      this.isSetUser = true;
+      this._user = value;
+    }
+    get User(): string {
+      return this._user;
+    }
 
-export class ApprovalEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    get IsSetUser(): bool {
+      return this.isSetUser;
+    }
+  }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+  export class RemovedBlackListEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-	protected owner: string = "";
-	protected isSetOwner: bool = false;
-	set Owner(value: string) {
-		this.isSetOwner = true;
-		this.owner = value;
-	}
-	get Owner(): string {
-		 return this.owner;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-	get IsSetOwner(): bool {
-		 return this.isSetOwner;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-	protected spender: string = "";
-	protected isSetSpender: bool = false;
-	set Spender(value: string) {
-		this.isSetSpender = true;
-		this.spender = value;
-	}
-	get Spender(): string {
-		 return this.spender;
-	}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-	get IsSetSpender(): bool {
-		 return this.isSetSpender;
-	}
+    protected _user: string = "";
+    protected isSetUser: bool = false;
+    set User(value: string) {
+      this.isSetUser = true;
+      this._user = value;
+    }
+    get User(): string {
+      return this._user;
+    }
 
-	protected value: BigInt = BigInt.from(0);
-	protected isSetValue: bool = false;
-	set Value(value: BigInt) {
-		this.isSetValue = true;
-		this.value = value;
-	}
-	get Value(): BigInt {
-		 return this.value;
-	}
+    get IsSetUser(): bool {
+      return this.isSetUser;
+    }
+  }
 
-	get IsSetValue(): bool {
-		 return this.isSetValue;
-	}
+  export class ApprovalEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-export class TransferEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-	protected from: string = "";
-	protected isSetFrom: bool = false;
-	set From(value: string) {
-		this.isSetFrom = true;
-		this.from = value;
-	}
-	get From(): string {
-		 return this.from;
-	}
+    protected owner: string = "";
+    protected isSetOwner: bool = false;
+    set Owner(value: string) {
+      this.isSetOwner = true;
+      this.owner = value;
+    }
+    get Owner(): string {
+      return this.owner;
+    }
 
-	get IsSetFrom(): bool {
-		 return this.isSetFrom;
-	}
+    get IsSetOwner(): bool {
+      return this.isSetOwner;
+    }
 
-	protected to: string = "";
-	protected isSetTo: bool = false;
-	set To(value: string) {
-		this.isSetTo = true;
-		this.to = value;
-	}
-	get To(): string {
-		 return this.to;
-	}
+    protected spender: string = "";
+    protected isSetSpender: bool = false;
+    set Spender(value: string) {
+      this.isSetSpender = true;
+      this.spender = value;
+    }
+    get Spender(): string {
+      return this.spender;
+    }
 
-	get IsSetTo(): bool {
-		 return this.isSetTo;
-	}
+    get IsSetSpender(): bool {
+      return this.isSetSpender;
+    }
 
-	protected value: BigInt = BigInt.from(0);
-	protected isSetValue: bool = false;
-	set Value(value: BigInt) {
-		this.isSetValue = true;
-		this.value = value;
-	}
-	get Value(): BigInt {
-		 return this.value;
-	}
+    protected value: BigInt = BigInt.from(0);
+    protected isSetValue: bool = false;
+    set Value(value: BigInt) {
+      this.isSetValue = true;
+      this.value = value;
+    }
+    get Value(): BigInt {
+      return this.value;
+    }
 
-	get IsSetValue(): bool {
-		 return this.isSetValue;
-	}
+    get IsSetValue(): bool {
+      return this.isSetValue;
+    }
+  }
 
-}
+  export class TransferEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
 
-export class PauseEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
 
-}
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
 
-export class UnpauseEventSchemaFilter {
-	protected id: string = "";
-	protected isSetId: bool = false;
-	set Id(value: string) {
-		this.isSetId = true;
-		this.id = value;
-	}
-	get Id(): string {
-		 return this.id;
-	}
+    protected from: string = "";
+    protected isSetFrom: bool = false;
+    set From(value: string) {
+      this.isSetFrom = true;
+      this.from = value;
+    }
+    get From(): string {
+      return this.from;
+    }
 
-	get IsSetId(): bool {
-		 return this.isSetId;
-	}
+    get IsSetFrom(): bool {
+      return this.isSetFrom;
+    }
 
-}
+    protected to: string = "";
+    protected isSetTo: bool = false;
+    set To(value: string) {
+      this.isSetTo = true;
+      this.to = value;
+    }
+    get To(): string {
+      return this.to;
+    }
 
+    get IsSetTo(): bool {
+      return this.isSetTo;
+    }
+
+    protected value: BigInt = BigInt.from(0);
+    protected isSetValue: bool = false;
+    set Value(value: BigInt) {
+      this.isSetValue = true;
+      this.value = value;
+    }
+    get Value(): BigInt {
+      return this.value;
+    }
+
+    get IsSetValue(): bool {
+      return this.isSetValue;
+    }
+  }
+
+  export class PauseEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
+
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
+
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
+
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
+  }
+
+  export class UnpauseEventSchemaFilter {
+    protected $id: string = "";
+    protected isSet$Id: bool = false;
+    set $Id(value: string) {
+      this.isSet$Id = true;
+      this.$id = value;
+    }
+    get $Id(): string {
+      return this.$id;
+    }
+
+    get IsSet$Id(): bool {
+      return this.isSet$Id;
+    }
+
+    protected id: string = "";
+    protected isSetId: bool = false;
+    set Id(value: string) {
+      this.isSetId = true;
+      this.id = value;
+    }
+    get Id(): string {
+      return this.id;
+    }
+
+    get IsSetId(): bool {
+      return this.isSetId;
+    }
+  }
 }

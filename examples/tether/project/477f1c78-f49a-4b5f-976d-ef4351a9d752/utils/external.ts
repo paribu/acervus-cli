@@ -1,13 +1,7 @@
 // @ts-nocheck
 
-@external("block", "getBlockInfo")
-export declare function getBlockObjectPtr(): i32;
-
 @external("event", "getEvent")
 export declare function getEventObjectPtr(): i32;
-
-@external("contractcall", "getContractCallInfo")
-export declare function getContractCallObjectPtr(contractCallObjectPtr: i32): i32;
 
 @external("log", "log")
 export declare function logPrint(strPtr: i32): void;
