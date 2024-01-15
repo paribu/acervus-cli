@@ -42,7 +42,7 @@ func GetInput(pc PromptContent, opts PromptOptions) string {
 
 func GetSelect(pc PromptContent, items []string) string {
 	if len(items) == 0 {
-		items = []string{"Paribu Mainnet", "Paribu Testnet", "Ethereum Sepolia", "Ethereum Mainnet"}
+		items = []string{"Ethereum Mainnet", "Polygon Mumbai"}
 	}
 	q := &survey.Question{
 		Name: pc.Name,
