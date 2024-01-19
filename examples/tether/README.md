@@ -145,36 +145,57 @@ export  function handleDeprecateEvent(event:  generated.DeprecateEvent):  void  
    schema object.
 
  ```typescript
-export  function handleDestroyedBlackFundsEvent( event:  generated.DestroyedBlackFundsEvent,
-):  void  {
-	// Example of querying and updating an existing schema object
-	let  filters  =  [new  filter.DestroyedBlackFundsEventSchemaFilter()];
-	let  events  =  schema.DestroyedBlackFundsEventSchema.query(filters);
-	if  (events.length  >  0)  {
-	let  destroyedEvent  =  events[0];
-	destroyedEvent.BlackListedUser  =  event.BlackListedUser;
-	destroyedEvent.Balance  =  event.Balance;
-	destroyedEvent.update();
-	}
+export function handleDestroyedBlackFundsEvent(event: generated.DestroyedBlackFundsEvent): void {
+    // Perform a query to DestroyedBlackFundsEventSchema with an applied filter.
+    // Note: In this example, the filter is set to the value of BlackListedUser from the event.
+    const filter = new filter.DestroyedBlackFundsEventSchemaFilter();
+    filter.BlackListedUser = event.BlackListedUser; 
 
-	// Print the event details
-	event.print();
+    // Execute the query and get the results
+    const queryResult = schema.DestroyedBlackFundsEventSchema.query([filter]);
+    
+    // If there is an existing schema object, update it
+    if (queryResult.length > 0) {
+        let destroyedEvent = queryResult[0];
+        destroyedEvent.BlackListedUser = event.BlackListedUser;
+        destroyedEvent.Balance = event.Balance;
+        destroyedEvent.update();
+    }
+
+    // Note: The queryResult variable contains the result of the executed query.
+    // You can further process or log this result as needed.
+    const transferEventQueryResult = schema.TransferEventSchema.query([]);
+    
+    // Print the event details
+    event.print();
 }
 ```
    
  - handleAddedBlackListEvent: Deletes an existing schema object.
 
  ```typescript
-export  function handleAddedBlackListEvent( event:  generated.AddedBlackListEvent):  void  {
-	// Example of deleting an existing schema object
-	let  filters  =  [new  filter.AddedBlackListEventSchemaFilter()];
-	let  events  =  schema.AddedBlackListEventSchema.query(filters);
-	if  (events.length  >  0)  {
-	events[0].delete();
-	}
+// handleAddedBlackListEvent: Deletes an existing schema object.
+// Note: In this example, we are not applying any specific filter to the query (filter is empty),
+// indicating that we are essentially retrieving all records of AddedBlackListEventSchema.
+// This is done to illustrate how to handle scenarios where no specific filter is needed.
+export function handleAddedBlackListEvent(event: generated.AddedBlackListEvent): void {
+    // An empty filter indicates that no specific conditions are applied to the query.
+    const filter = new filter.AddedBlackListEventSchemaFilter();
 
-	// Print the event details
-	event.print();
+    // Execute the query and get the results
+    const queryResult = schema.AddedBlackListEventSchema.query([filter]);
+
+    // If there is an existing schema object, delete it
+    if (queryResult.length > 0) {
+        queryResult[0].delete();
+    }
+
+    // Note: The queryResult variable contains the result of the executed query.
+    // You can further process or log this result as needed.
+    const transferEventQueryResult = schema.TransferEventSchema.query([]);
+
+    // Print the event details
+    event.print();
 }
 ```
    
