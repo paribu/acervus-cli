@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -105,7 +106,7 @@ func (a *projectManagerAPI) Test(projectID, settingsFilePath, projectFilePath st
 	var testResp TestResponse
 	err = json.Unmarshal(resp, &testResp)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(string(resp))
 	}
 
 	return &testResp, nil

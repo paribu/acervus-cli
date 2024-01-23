@@ -90,7 +90,7 @@ func (a *projectManagerAPI) GraphQL(projectID string, gqlProjectDir, yamlFilepat
 	var graphqlResp GenerateGraphQLResponse
 	err = json.Unmarshal(resp, &graphqlResp)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(string(resp))
 	}
 
 	return &graphqlResp, nil

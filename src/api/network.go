@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 )
 
@@ -20,7 +21,7 @@ func (a *projectManagerAPI) GetNetworks() (NetworksResponse, error) {
 	var networksResp NetworksResponse
 	err = json.Unmarshal(resp, &networksResp)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(string(resp))
 	}
 
 	return networksResp, nil

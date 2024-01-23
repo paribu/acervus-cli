@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
 	"github.com/paribu/acervus-cli/src/settings"
@@ -76,17 +77,18 @@ func (a *projectManagerAPI) CreateProject(settingsFilepath string) (*CreateProje
 	var createProjectResp CreateProjectResponse
 	err = json.Unmarshal(resp, &createProjectResp)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(string(resp))
 	}
 
 	return &createProjectResp, nil
 }
 
 func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
-	params, err := json.Marshal(PaginationRequest{
+	params, _ := json.Marshal(PaginationRequest{
 		Page:  1,
 		Limit: 0,
 	})
+
 	resp, err := a.makeAuthenticatedAPIRequest(
 		http.MethodGet,
 		endpoints.project.list,
@@ -99,7 +101,7 @@ func (a *projectManagerAPI) ListProjects() ([]ProjectItem, error) {
 	var listResponse PaginationResult
 	err = json.Unmarshal(resp, &listResponse)
 	if err != nil {
-		return []ProjectItem{}, err
+		return []ProjectItem{}, errors.New(string(resp))
 	}
 
 	return listResponse.Results, nil

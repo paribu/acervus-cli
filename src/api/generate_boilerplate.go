@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"os"
 
@@ -65,7 +66,7 @@ func (a *projectManagerAPI) GenerateBoilerplate(projectID string, settingsFilePa
 	var generateBoilerplateResp GenerateBoilerplateResponse
 	err = json.Unmarshal(resp, &generateBoilerplateResp)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(string(resp))
 	}
 
 	return &generateBoilerplateResp, nil

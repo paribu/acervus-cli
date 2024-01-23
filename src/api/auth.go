@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 )
@@ -44,7 +45,7 @@ func (a *authAPI) Register(email, password string) (refreshToken, accessToken st
 	var authResp AuthResponse
 	err = json.Unmarshal(resp, &authResp)
 	if err != nil {
-		return "", "", err
+		return "", "", errors.New(string(resp))
 	}
 
 	return authResp.RefreshToken, authResp.AccessToken, nil
@@ -68,7 +69,7 @@ func (a *authAPI) Login(email, password string) (refreshToken, accessToken strin
 	var authResp AuthResponse
 	err = json.Unmarshal(resp, &authResp)
 	if err != nil {
-		return "", "", err
+		return "", "", errors.New(string(resp))
 	}
 
 	return authResp.RefreshToken, authResp.AccessToken, nil

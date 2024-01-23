@@ -164,7 +164,7 @@ func formatRespError(statusCode int, respBody []byte) error {
 	var respFields map[string]interface{}
 	err := json.Unmarshal(respBody, &respFields)
 	if err != nil {
-		return fmt.Errorf("failed to unmarshal response body: %w", err)
+		return errors.New(string(respBody))
 	}
 
 	message, ok := respFields["message"].(string)
