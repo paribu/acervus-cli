@@ -19,8 +19,13 @@ jobs:
       - name: Checkout Main Repository
         uses: actions/checkout@v2
 
+      - name: Fetch Tags
+        run: git fetch --tags
+
       - name: Get Latest Tag
-        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+        run: |
+          LATEST_TAG=$(git tag --sort=-creatordate | head -n 1)
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: Setup TAG_NAME Environment Variable
         run: |
