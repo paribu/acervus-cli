@@ -5,6 +5,11 @@ on:
     tags:
       - "v*"
   workflow_dispatch:
+    inputs:
+      tagName:
+        description: 'Tag Name for Homebrew Formula'
+        required: true
+        default: 'v0.0.5' 
 
 jobs:
   update-homebrew-formula:
@@ -40,8 +45,9 @@ jobs:
 
       - name: Update Homebrew Formula
         run: |
+          TAG_NAME="${{ github.event.inputs.tagName || github.ref_name }}"
           SHA256=$(cat sha256.txt | awk '{ print $1 }')
-          sed -i "s|url \".*\"|url \"https://github.com/paribu/acervus-cli/archive/refs/tags/${GITHUB_REF_NAME}.tar.gz\"|g" homebrew-formula/Formula/acervus/acervus.rb
+          sed -i "s|url \".*\"|url \"https://github.com/paribu/acervus-cli/archive/refs/tags/${TAG_NAME}.tar.gz\"|g" homebrew-formula/Formula/acervus/acervus.rb
           sed -i "s|sha256 \".*\"|sha256 \"$SHA256\"|g" homebrew-formula/Formula/acervus/acervus.rb
 
       - name: Commit and Push Changes
