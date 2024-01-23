@@ -20,16 +20,18 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get Latest Tag
-        id: get_latest_tag
         run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-      - name: Set TAG_NAME
-        id: set_tag_name
+      - name: Setup TAG_NAME Environment Variable
         run: |
-          if [ "${{ github.event.inputs.tagName }}" != "" ]; then
-            echo "TAG_NAME=${{ github.event.inputs.tagName }}" >> $GITHUB_ENV
+          echo "INPUT_TAG_NAME=${{ github.event.inputs.tagName }}" >> $GITHUB_ENV
+
+      - name: Set TAG_NAME
+        run: |
+          if [ -n "$INPUT_TAG_NAME" ]; then
+            echo "TAG_NAME=$INPUT_TAG_NAME" >> $GITHUB_ENV
           else
-            echo "TAG_NAME=${{ env.LATEST_TAG }}" >> $GITHUB_ENV
+            echo "TAG_NAME=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: Download Release Archive
         run: |
