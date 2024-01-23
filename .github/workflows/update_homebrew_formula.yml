@@ -1,9 +1,10 @@
 name: Update Homebrew Formula
 
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["new_release"]
+    types: 
+      - completed
   workflow_dispatch:
     inputs:
       tagName:
@@ -18,15 +19,13 @@ jobs:
       - name: Checkout Main Repository
         uses: actions/checkout@v2
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: "1.21"
-
-      - name: Build and Calculate SHA256
+      - name: Download Release Archive
         run: |
-          go build -o acervus
-          sha256sum acervus > sha256.txt
+          TAG_NAME="${{ github.event.inputs.tagName || github.ref_name }}"
+          curl -L -o "acervus-${TAG_NAME}.tar.gz" "https://github.com/paribu/acervus-cli/archive/refs/tags/${TAG_NAME}.tar.gz"
+
+      - name: Calculate SHA256
+        run: sha256sum "acervus-${TAG_NAME}.tar.gz" > sha256.txt
 
       - name: Setup SSH Key
         run: |
