@@ -19,14 +19,24 @@ jobs:
       - name: Checkout Main Repository
         uses: actions/checkout@v2
 
+      - name: Get Latest Tag
+        id: get_latest_tag
+        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: Set TAG_NAME
+        id: set_tag_name
+        run: |
+          if [ "${{ github.event.inputs.tagName }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.inputs.tagName }}" >> $GITHUB_ENV
+          else
+            echo "TAG_NAME=${{ env.LATEST_TAG }}" >> $GITHUB_ENV
+
       - name: Download Release Archive
         run: |
-          TAG_NAME="${{ github.event.inputs.tagName || github.ref_name }}"
           curl -L -o "acervus-${TAG_NAME}.tar.gz" "https://github.com/paribu/acervus-cli/archive/refs/tags/${TAG_NAME}.tar.gz"
 
       - name: Calculate SHA256
         run: |
-          TAG_NAME="${{ github.event.inputs.tagName || github.ref_name }}"
           sha256sum "acervus-${TAG_NAME}.tar.gz" > sha256.txt
 
       - name: Setup SSH Key
@@ -46,7 +56,6 @@ jobs:
 
       - name: Update Homebrew Formula
         run: |
-          TAG_NAME="${{ github.event.inputs.tagName || github.ref_name }}"
           SHA256=$(cat sha256.txt | awk '{ print $1 }')
           sed -i "s|url \".*\"|url \"https://github.com/paribu/acervus-cli/archive/refs/tags/${TAG_NAME}.tar.gz\"|g" homebrew-formula/Formula/acervus/acervus.rb
           sed -i "s|sha256 \".*\"|sha256 \"$SHA256\"|g" homebrew-formula/Formula/acervus/acervus.rb
