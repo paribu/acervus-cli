@@ -32,6 +32,7 @@ jobs:
             echo "TAG_NAME=$INPUT_TAG_NAME" >> $GITHUB_ENV
           else
             echo "TAG_NAME=$LATEST_TAG" >> $GITHUB_ENV
+          fi
 
       - name: Download Release Archive
         run: |
