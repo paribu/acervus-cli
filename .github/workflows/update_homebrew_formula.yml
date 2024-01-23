@@ -25,7 +25,9 @@ jobs:
           curl -L -o "acervus-${TAG_NAME}.tar.gz" "https://github.com/paribu/acervus-cli/archive/refs/tags/${TAG_NAME}.tar.gz"
 
       - name: Calculate SHA256
-        run: sha256sum "acervus-${TAG_NAME}.tar.gz" > sha256.txt
+        run: |
+          TAG_NAME="${{ github.event.inputs.tagName || github.ref_name }}"
+          sha256sum "acervus-${TAG_NAME}.tar.gz" > sha256.txt
 
       - name: Setup SSH Key
         run: |
