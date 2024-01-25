@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var ProjectTableHeaders = []string{"Project ID", "User ID", "Name", "Description", "Address", "Topic", "Start Block", "End Block", "Created At", "Updated At"}
+
 var ProjectCmd = &cobra.Command{
 	Use:   "projects",
 	Short: "List user projects",
@@ -23,7 +25,7 @@ var ProjectCmd = &cobra.Command{
 		}
 
 		table := tablewriter.NewWriter(os.Stdout)
-		table.SetHeader([]string{"Project ID", "User ID", "Name", "Description", "Address", "Topic", "Start Block", "End Block", "Created At", "Updated At"})
+		table.SetHeader(ProjectTableHeaders)
 
 		for _, project := range projects {
 			table.Append([]string{
