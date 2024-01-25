@@ -34,6 +34,7 @@ type PaginationResult struct {
 }
 
 type ProjectItem struct {
+	ProjectId   string `json:"projectId"`
 	UserId      string `json:"userId"`
 	Name        string `json:"name"`
 	Description string `json:"description"`

@@ -1,9 +1,12 @@
 package project
 
 import (
-	"encoding/json"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
 
+	"github.com/olekukonko/tablewriter"
 	"github.com/paribu/acervus-cli/src/api"
 	"github.com/spf13/cobra"
 )
@@ -20,14 +23,30 @@ var ProjectCmd = &cobra.Command{
 			return fmt.Errorf("error while getting projects list: %s", err)
 		}
 
-		for _, project := range projects {
-			prettiedProject, err := json.MarshalIndent(project, "", "  ")
-			if err != nil {
-				return err
-			}
+		table := tablewriter.NewWriter(os.Stdout)
+		table.SetHeader([]string{"Project ID", "User ID", "Name", "Description", "Code", "Abi", "Yaml", "Schema", "Address", "Topic", "Start Block", "End Block", "Is Deleted", "Created At", "Updated At"})
 
-			cmd.Println(string(prettiedProject))
+		for _, project := range projects {
+			table.Append([]string{
+				project.ProjectId,
+				project.UserId,
+				project.Name,
+				project.Description,
+				project.Code,
+				project.Abi,
+				strings.ReplaceAll(project.Yaml, "\n", ""),
+				strings.ReplaceAll(project.Schema, "\n", ""),
+				project.Address,
+				project.Topic,
+				strconv.FormatInt(project.StartBlock, 10),
+				strconv.FormatInt(project.EndBlock, 10),
+				strconv.FormatBool(project.IsDeleted),
+				project.CreatedAt,
+				project.UpdatedAt,
+			})
 		}
+
+		table.Render()
 
 		return nil
 	},
