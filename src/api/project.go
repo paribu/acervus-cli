@@ -34,10 +34,11 @@ type PaginationResult struct {
 }
 
 type ProjectItem struct {
+	ProjectId   string `json:"projectId"`
 	UserId      string `json:"userId"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	Code        string `json:"code"`
+	Project     string `json:"project"`
 	Abi         string `json:"abi"`
 	Yaml        string `json:"yaml"`
 	Schema      string `json:"schema"`

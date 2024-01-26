@@ -15,7 +15,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:     "acervus",
-	Version: "0.0.5",
+	Version: "0.0.6",
 	Short:   "CLI application to interact with Acervus Cloud",
 	Long:    "You can use this application to manage your Acervus account, generate, test and deploy Acervus projects.",
 	RunE: func(cmd *cobra.Command, args []string) error {
