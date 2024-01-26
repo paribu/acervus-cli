@@ -5,8 +5,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/olekukonko/tablewriter"
 	"github.com/paribu/acervus-cli/src/api"
+
+	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
 
